@@ -1,17 +1,16 @@
-
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import RootPage from "./Root/RootPage.Jsx"
-import Register from "./Root/Register/Register"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RootPage from "./Root/RootPage.Jsx";
+import Register from "./Root/Register/Register";
 import { ConfigProvider, theme, Button, Card } from "antd";
 
 function App() {
   const { darkAlgorithm } = theme;
-
   return (
     <ConfigProvider
       theme={{
         algorithm: darkAlgorithm,
-      }}>
+      }}
+    >
       <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<RootPage />} />
@@ -20,7 +19,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ConfigProvider>
-  )
+  );
 }
 
-export default App
+export default App;
