@@ -11,10 +11,10 @@ function FinishScreen() {
           <label>Localization</label>
         </div>
         <div className="w-full flex items-end justify-between">
-          <button type="button" className="slider-pref-next-button" onClick={decrementSlide}>
+          <button type="button" className="slider-wizard-next-button" onClick={decrementSlide}>
             Previous
           </button>
-          <button type="button" className="slider-pref-next-button" onClick={incrementSlide}>
+          <button type="button" className="slider-wizard-next-button" onClick={incrementSlide}>
             Finish
           </button>
         </div>

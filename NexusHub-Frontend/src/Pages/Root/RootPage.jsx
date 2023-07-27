@@ -25,7 +25,7 @@ function RootPage() {
                 </button>
               </div>
               <div className="w-full flex items-center justify-evenly">
-                <button type="button" className="slider-pref-next-button">
+                <button type="button" className="slider-wizard-next-button">
                   Join
                 </button>
                 <Link to={"/register"} className="select-register-button-alternative">

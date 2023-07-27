@@ -5,16 +5,16 @@ function ServicesScreen() {
   const decrementSlide = useRegisterWizardStore((state) => state.decrement_current_slide);
 
   return (
-    <div className="relative h-full w-full">
-      <div className="h-full w-full flex flex-col items-center relative gap-16">
-        <div className="h-3/4 w-2/4 gap-6 flex flex-col items-center justify-center">
+    <div className="relative w-full h-full">
+      <div className="relative flex flex-col items-center w-full h-full gap-16">
+        <div className="flex flex-col items-center justify-center w-2/4 gap-6 h-3/4">
           <label>Other</label>
         </div>
-        <div className="w-full flex items-end justify-between">
-          <button type="button" className="slider-pref-next-button" onClick={decrementSlide}>
+        <div className="flex items-end justify-between w-full">
+          <button type="button" className="slider-wizard-next-button" onClick={decrementSlide}>
             Previous
           </button>
-          <button type="button" className="slider-pref-next-button" onClick={incrementSlide}>
+          <button type="button" className="slider-wizard-next-button" onClick={incrementSlide}>
             Next
           </button>
         </div>
