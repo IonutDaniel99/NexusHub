@@ -1,13 +1,14 @@
 import useRegisterWizardStore from "../RegisterWizard";
-import { shallow } from 'zustand/shallow'
-import axios from 'axios';
-import { useState } from "react";
+import { shallow } from "zustand/shallow";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function FinishScreen() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const decrementSlide = useRegisterWizardStore((state) => state.decrement_current_slide);
   const resetSlide = useRegisterWizardStore((state) => state.reset_slide);
 
   const { account_name, latitude, longitude, city_name } = useRegisterWizardStore(
@@ -18,41 +19,48 @@ function FinishScreen() {
       city_name: state.city_name,
     }),
     shallow
-  )
+  );
 
   let user_data = {
-    account_name, latitude, longitude, city_name
-  }
+    account_name,
+    latitude,
+    longitude,
+    city_name,
+  };
 
   const handleSaveUser = () => {
-    axios.post('http://localhost:5800/register/save', { user_data })
+    axios
+      .post("http://localhost:5800/register/save", { user_data })
       .then((response) => {
-        setIsLoading(true)
+        setIsLoading(true);
+        setIsError(false);
         if (response.status === 200) {
-          return navigate('/')
+          resetSlide();
+          return navigate("/");
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMessage(error);
       });
   };
 
+  const initialRender = useRef(true); // Ref to track initial render
+
+  useEffect(() => {
+    if (initialRender.current) {
+      handleSaveUser();
+      initialRender.current = false;
+    }
+  }, []); // Empty dependency array ensures it runs only once on mount
+
   return (
-    <div className="relative w-full h-full">
-      <div className="relative flex flex-col items-center w-full h-full gap-16">
-        <div className="flex flex-col items-center justify-center w-2/4 gap-6 h-3/4">
-          <label>{isLoading ? "Loading" : "Ceva"}</label>
-        </div>
-        <div className="flex items-end justify-between w-full">
-          <button type="button" className="slider-wizard-next-button" onClick={decrementSlide}>
-            Previous
-          </button>
-          <button type="button" className="slider-wizard-next-button" onClick={() => {
-            handleSaveUser()
-            resetSlide()
-          }}>
-            Finish
-          </button>
+    <div className="relative w-full h-5/6 flex items-center ">
+      <div className="relative h-3/4 w-full flex items-center justify-center">
+        <div className="flex items-center justify-center w-2/4 h-full ">
+          {isLoading && <span className="">Loading</span>}
+          {isError && <span className="">{errorMessage}</span>}
         </div>
       </div>
     </div>
