@@ -5,9 +5,7 @@ import cors from 'cors';
 
 // Configs Imports
 import { SERVICE_NAMES } from '../../common/constants.js';
-import { CORS_CONFIGURATION, WEATHER_MICROSERVICE_PORT as weatherPort } from '../../configs/microservices_configs.js';
-import { consoleWithTimeStamp } from '../../utils/console_override.js';
-import { weather_service_start } from './constants.js';
+import { CORS_CONFIGURATION, WEATHER_MICROSERVICE_PORT } from '../../configs/microservices_configs.js';
 import { objectToSendFunc } from '../../utils/data_send.js';
 import { logger } from '../../utils/winston_logger.js';
 
@@ -29,6 +27,6 @@ io.on('connection', (socket) => {
     socket.emit('weatherStatusUpdate', objectToSendFunc("info", "Weather service start!", service_name));
 });
 
-server.listen(weatherPort, () => {
-    logger.info(`${service_name} service start succsesfuly on port ${weatherPort}.`)
+server.listen(WEATHER_MICROSERVICE_PORT, () => {
+    logger.info(`${service_name} service start succsesfuly on port ${WEATHER_MICROSERVICE_PORT}.`)
 });

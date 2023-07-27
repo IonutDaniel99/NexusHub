@@ -1,0 +1,1 @@
+export const onboarding_url = "http://localhost:5800";
