@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "uuid_string" TEXT NOT NULL,
     "account_name" TEXT NOT NULL,
     "latitude" REAL,
     "longitude" REAL,

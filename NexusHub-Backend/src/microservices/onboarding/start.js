@@ -27,6 +27,7 @@ app.post('/register/save', async (req, res) => {
     await prisma.user
         .create({
             data: {
+                uuid_string: user_data.uuid_string,
                 account_name: user_data.account_name,
                 latitude: user_data.latitude,
                 longitude: user_data.longitude,

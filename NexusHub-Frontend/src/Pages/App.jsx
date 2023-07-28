@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootPage from "./Root/RootPage.Jsx";
 import Register from "./Root/Register/Register";
 import { ConfigProvider, theme, Button, Card } from "antd";
+import DashboardMain from "./Dashboard/DashboardMain";
 
 function App() {
   const { darkAlgorithm } = theme;
@@ -15,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<RootPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<p>TBI</p>} />
+          <Route path="/dashboard" element={<DashboardMain />} />
         </Routes>
       </BrowserRouter>
     </ConfigProvider>

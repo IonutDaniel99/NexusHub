@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id           Int     @id @default(autoincrement())
+  uuid_string  String
   account_name String  @unique
   latitude     Float?
   longitude    Float?

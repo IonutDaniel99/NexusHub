@@ -11,8 +11,9 @@ function FinishScreen() {
   const navigate = useNavigate();
   const resetSlide = useRegisterWizardStore((state) => state.reset_slide);
 
-  const { account_name, latitude, longitude, city_name } = useRegisterWizardStore(
+  const { uuid_string, account_name, latitude, longitude, city_name } = useRegisterWizardStore(
     (state) => ({
+      uuid_string: state.uuid_string,
       account_name: state.account_name,
       latitude: state.latitude,
       longitude: state.longitude,
@@ -22,6 +23,7 @@ function FinishScreen() {
   );
 
   let user_data = {
+    uuid_string,
     account_name,
     latitude,
     longitude,
