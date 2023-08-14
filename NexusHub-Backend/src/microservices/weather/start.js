@@ -5,7 +5,7 @@ import cors from 'cors';
 
 // Configs Imports
 import { SERVICE_NAMES } from '../../common/constants.js';
-import { CORS_CONFIGURATION, WEATHER_MICROSERVICE_PORT } from '../../configs/microservices_configs.js';
+import { CORS_CONFIGURATION, WEATHER_MICROSERVICE_PORT } from '../../server/microservices_configs.js';
 import { objectToSendFunc } from '../../utils/data_send.js';
 import { logger } from '../../utils/winston_logger.js';
 

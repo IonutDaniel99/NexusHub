@@ -3,7 +3,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 import { SERVICE_NAMES } from '../../common/constants.js';
-import { CONSOLE_MICROSERVICE_PORT as consolePort, CORS_CONFIGURATION } from '../../configs/microservices_configs.js';
+import { CONSOLE_MICROSERVICE_PORT as consolePort, CORS_CONFIGURATION } from '../../server/microservices_configs.js';
 import { objectToSendFunc } from '../../utils/data_send.js';
 import { logger } from '../../utils/winston_logger.js';
 

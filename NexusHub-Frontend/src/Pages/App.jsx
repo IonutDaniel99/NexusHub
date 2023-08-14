@@ -1,8 +1,9 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import RootPage from "./Root/RootPage.Jsx";
 import Register from "./Root/Register/Register";
 import { ConfigProvider, theme, Button, Card } from "antd";
 import DashboardMain from "./Dashboard/DashboardMain";
+import { useEffect } from "react";
 
 function App() {
   const { darkAlgorithm } = theme;

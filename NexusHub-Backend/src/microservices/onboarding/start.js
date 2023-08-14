@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { SERVICE_NAMES } from '../../common/constants.js';
-import { ONBOARDING_MICROSERVICE_PORT } from '../../configs/microservices_configs.js';
+import { ONBOARDING_MICROSERVICE_PORT } from '../../server/microservices_configs.js';
 import { logger } from '../../utils/winston_logger.js';
 
 const app = express();
