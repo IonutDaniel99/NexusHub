@@ -3,6 +3,7 @@ import { shallow } from "zustand/shallow";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { OnboardingUrl } from "../../config";
 
 function FinishScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ function FinishScreen() {
 
   const handleSaveUser = () => {
     axios
-      .post("http://localhost:5800/register/save", { user_data })
+      .post(`${OnboardingUrl}/register/save`, { user_data })
       .then((response) => {
         setIsLoading(true);
         setIsError(false);
@@ -58,8 +59,8 @@ function FinishScreen() {
   }, []); // Empty dependency array ensures it runs only once on mount
 
   return (
-    <div className="relative w-full h-5/6 flex items-center ">
-      <div className="relative h-3/4 w-full flex items-center justify-center">
+    <div className="relative flex items-center w-full h-5/6 ">
+      <div className="relative flex items-center justify-center w-full h-3/4">
         <div className="flex items-center justify-center w-2/4 h-full ">
           {isLoading && <span className="">Loading</span>}
           {isError && <span className="">{errorMessage}</span>}

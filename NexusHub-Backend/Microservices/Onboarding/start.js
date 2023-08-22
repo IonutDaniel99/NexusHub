@@ -1,24 +1,24 @@
-import { PrismaClient } from '@prisma/client';
+// System Variabiles
 import express from 'express';
 import cors from 'cors';
+import { PrismaClient } from '@prisma/client';
+import { logger } from './src/utils/winston_logger.js';
 
-import { SERVICE_NAMES } from '../../common/constants.js';
-import { ONBOARDING_MICROSERVICE_PORT } from '../../server/microservices_configs.js';
-import { logger } from '../../utils/winston_logger.js';
 
+const ONBOARDING_MICROSERVICE_PORT = 5000;
+const SERVICE_NAME = 'ONBOARDING';
 const app = express();
-const service_name = SERVICE_NAMES['ONBOARDING'];
 const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
 
 app.listen(ONBOARDING_MICROSERVICE_PORT, () => {
-    logger.info(`${service_name} service start succsesfuly on port ${ONBOARDING_MICROSERVICE_PORT}.`);
+    logger.info(`${SERVICE_NAME} service start succsesfuly on port ${ONBOARDING_MICROSERVICE_PORT}.`);
 });
 
 app.get('/', (req, res) => {
-    logger.info(`Someone join on ${service_name}`);
+    logger.info(`Someone join on ${SERVICE_NAME}`);
     res.sendStatus(200);
 });
 app.post('/register/save', async (req, res) => {
@@ -49,3 +49,10 @@ app.get('/users', async (req, res) => {
         res.status(500).json({ error: 'Error fetching users' });
     }
 });
+
+
+
+
+
+
+

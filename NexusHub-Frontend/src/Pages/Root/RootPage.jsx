@@ -2,7 +2,7 @@ import React, { useEffect, useInsertionEffect, useLayoutEffect, useState } from 
 import reactLogo from "../../assets/react.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { onboarding_url } from "./config";
+import { OnboardingUrl } from "./config";
 import useRootStore from "./RootStore";
 import { useNavigate } from "react-router-dom";
 import { _, delay } from "lodash";
@@ -28,7 +28,7 @@ function RootPage() {
 
   useEffect(() => {
     axios
-      .get(onboarding_url + "/users")
+      .get(`${OnboardingUrl}/users`)
       .then((response) => {
         setUsers(response.data);
       })

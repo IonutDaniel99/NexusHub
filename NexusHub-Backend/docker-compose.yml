@@ -1,0 +1,26 @@
+version: '3'
+services:
+  onboarding:
+    image: onboarding
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        limits:
+          memory: 256M 
+  console:
+    image: console
+    ports:
+      - "5001:5001"
+    deploy:
+      resources:
+        limits:
+          memory: 256M 
+  weather:
+    image: weather
+    ports:
+      - "5002:5002"
+    deploy:
+      resources:
+        limits:
+          memory: 256M 

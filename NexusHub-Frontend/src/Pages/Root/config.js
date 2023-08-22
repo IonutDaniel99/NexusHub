@@ -1,1 +1,1 @@
-export const onboarding_url = "http://localhost:5800";
+export const OnboardingUrl = "http://localhost:5000";
