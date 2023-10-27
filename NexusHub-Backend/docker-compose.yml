@@ -1,26 +1,45 @@
 version: '3'
 services:
+  services_status:
+    image: services_status
+    ports:
+      - "9998:9998"
+    networks:
+      - bridgeConnection
+    deploy:
+      resources:
+        limits:
+          memory: 256M
   onboarding:
     image: onboarding
     ports:
       - "5000:5000"
+    networks:
+      - bridgeConnection
     deploy:
       resources:
         limits:
-          memory: 256M 
+          memory: 256M
   console:
     image: console
     ports:
       - "5001:5001"
+    networks:
+      - bridgeConnection
     deploy:
       resources:
         limits:
-          memory: 256M 
+          memory: 256M
   weather:
     image: weather
     ports:
       - "5002:5002"
+    networks:
+      - bridgeConnection
     deploy:
       resources:
         limits:
-          memory: 256M 
+          memory: 256M
+networks:
+  bridgeConnection:
+    driver: bridge

@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# List of directories containing Dockerfiles
-CONTAINER_DIRS=("Console" "Onboarding" "Weather")
+CONTAINER_DIRS=($(find Microservices/ -mindepth 1 -maxdepth 1 -type d))
 
 # Loop through each directory and build the container
 for dir in "${CONTAINER_DIRS[@]}"; do
-  echo "Building container in "${dir,,}"..."
-  docker build -t "${dir,,}" "Microservices/$dir"
-  echo "Container in "${dir,,}" built successfully."
+  # Extract the directory name from the full path
+  container_name=$(basename "${dir}")
+  
+  echo "Building container in ${container_name,,}..."
+  docker build -t "${container_name,,}" "${dir}"
+  echo "Container in ${container_name,,} built successfully."
 done

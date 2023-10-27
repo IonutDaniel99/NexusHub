@@ -1,9 +1,9 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootPage from "./Root/RootPage.Jsx";
 import Register from "./Root/Register/Register";
-import { ConfigProvider, theme, Button, Card } from "antd";
+import { ConfigProvider, theme } from "antd";
 import DashboardMain from "./Dashboard/DashboardMain";
-import { useEffect } from "react";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const { darkAlgorithm } = theme;
@@ -17,7 +17,10 @@ function App() {
         <Routes>
           <Route path="/" element={<RootPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<DashboardMain />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<DashboardMain />} />
+            {/* <Route path="/xyz" element={<XYZ />} /> */}
+          </Route>
         </Routes>
       </BrowserRouter>
     </ConfigProvider>

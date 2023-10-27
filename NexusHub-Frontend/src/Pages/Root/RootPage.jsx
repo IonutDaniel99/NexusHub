@@ -1,13 +1,16 @@
-import React, { useEffect, useInsertionEffect, useLayoutEffect, useState } from "react";
-import reactLogo from "../../assets/react.svg";
+/* eslint-disable no-extra-boolean-cast */
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { OnboardingUrl } from "./config";
 import useRootStore from "./RootStore";
 import { useNavigate } from "react-router-dom";
 import { _, delay } from "lodash";
+import useLocalStorage from "../../hooks/useLocalStorage";
 function RootPage() {
   const navigate = useNavigate();
+  const [isUserSaved, setUser] = useLocalStorage('current_user', null);
+  const [isUserLogin, setUserLogin] = useLocalStorage('current_user_login', false);
 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,9 +20,7 @@ function RootPage() {
   const getSelectedUser = useRootStore((state) => state.selected_user);
 
   useEffect(() => {
-    const current_user = localStorage.getItem('current_user');
-    console.log(current_user)
-    if (current_user) {
+    if (isUserSaved && isUserLogin) {
       navigate("/dashboard")
     } else {
       setLoading(false)
@@ -39,14 +40,14 @@ function RootPage() {
 
   const handleUserChange = (user) => {
     setSelectedUser(user.uuid_string);
-    localStorage.setItem('current_user', user.uuid_string);
+    setUser(user.uuid_string)
   };
 
   const handleJoinButton = () => {
-    const current_user = localStorage.getItem('current_user');
     setLoading(true);
     delay(() => {
-      if (!!current_user) {
+      if (!!isUserSaved) {
+        setUserLogin(true)
         navigate("/dashboard")
       }
       else {
@@ -62,12 +63,12 @@ function RootPage() {
       <div className="relative flex items-center justify-center w-screen h-screen">
         <div className="flex flex-col items-center w-5/12 h-4/6 justify-evenly">
           <div className="w-40 h-40">
-            <img src={reactLogo} className="w-full h-full" />
+            <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png"} className="w-full h-full" />
           </div>
           <div className="flex w-full h-1/3 justify-evenly">
             {isError && <span className="text-2xl font-medium ">{errorMessage}</span>}
             {loading ? (
-              <span className="text-2xl font-medium animate-pulse">Loading...</span>
+              <span className="text-2xl font-medium text-white animate-pulse">Loading...</span>
             ) : (
               <div className="flex flex-col items-center w-full gap-6 justify-evenly">
                 <p className="font-medium">Select User</p>
