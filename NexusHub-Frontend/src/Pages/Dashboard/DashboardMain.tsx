@@ -5,51 +5,12 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import "./dashboard.less"
 import { uniqueId } from '@blueprintjs/core/lib/esm/common/utils';
-import WeatherPanel from '../../panels/WeatherPanel/WeatherPanel';
 import useAxiosFetch from '../../hooks/useAxios';
 import { ServiceStatusUrl } from '../../config';
 import useServiceStatusStore from '../../stores/ServiceStatusStore';
-import OnboardingPanel from '../../panels/OnboardingPanel/OnboardingPanel';
-import ConsolePanel from '../../panels/ConsolePanel/ConsolePanel';
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/src/components/ui/context-menu';
+import { DEFAULT_CONTROLS_WITH_CREATION, PANELS_CONFIG, PANELS_MAP } from './config';
 
-
-
-export const DEFAULT_CONTROLS_WITH_CREATION = React.Children.toArray([
-  <ExpandButton />,
-  <SplitButton />,
-  <RemoveButton />,
-]);
-
-const PANELS_MAP = {
-  a: {
-    title: "a",
-    component: <ConsolePanel />
-  },
-  b: {
-    title: "b",
-    component: null
-  },
-  c: {
-    title: "c",
-    component: null
-  },
-  d: {
-    title: "d",
-    component: null
-  },
-  e: {
-    title: "e",
-    component: null
-  },
-};
-
-
-const PANELS_CONFIG = {
-  "Onboarding": <OnboardingPanel />,
-  "Weather": <WeatherPanel />,
-  "Console": <ConsolePanel />,
-}
 
 function DashboardMain() {
   const [panelsState, setPanelsState] = useState(PANELS_MAP)
@@ -74,8 +35,7 @@ function DashboardMain() {
     return <div>No data available</div>;
   }
 
-  const handlePanel = (id, service_name) => {
-    console.log(id)
+  const handlePanel = (id: any, service_name: string | number) => {
     setPanelsState(prev => ({
       ...prev,
       [id]: {
@@ -98,21 +58,24 @@ function DashboardMain() {
             title={panelsState[id].title}
             toolbarControls={DEFAULT_CONTROLS_WITH_CREATION}
           >
-            {panelsState[id].component === null ?
+            {panelsState[id].component === null ? (
               <ContextMenu>
-                <ContextMenuTrigger className="flex items-center justify-center h-full text-sm text-white text-opacity-40">Right click</ContextMenuTrigger>
+                <ContextMenuTrigger className="flex items-center justify-center h-full text-sm text-white text-opacity-40">
+                  Right click
+                </ContextMenuTrigger>
                 <ContextMenuContent>
-                  <ContextMenuItem>Profile</ContextMenuItem>
-                  <ContextMenuItem>Billing</ContextMenuItem>
-                  <ContextMenuItem>Team</ContextMenuItem>
-                  <ContextMenuItem>Subscription</ContextMenuItem>
+                  {data.map((service: any, index: React.Key) => (
+                    <ContextMenuItem key={index} onSelect={() => handlePanel(id, service.service_name)}>
+                      {service.service_name}
+                    </ContextMenuItem>
+                  ))}
                 </ContextMenuContent>
               </ContextMenu>
-              :
+            ) : (
               <span className='text-white'>
                 {panelsState[id].component}
               </span>
-            }
+            )}
           </MosaicWindow>
         )}
         initialValue={{
@@ -131,11 +94,12 @@ function DashboardMain() {
           },
           second: "a",
           direction: "row",
-          "splitPercentage": 75
+          splitPercentage: 75
         }}
       />
     </div>
-  )
+  );
+
 };
 
 export default DashboardMain;

@@ -26,6 +26,11 @@ app.get('/', (req, res) => {
     res.sendStatus(200);
 });
 
+app.get('/status', (req, res) => {
+    logger.info(`Someone check status for ${SERVICE_NAME}`);
+    res.sendStatus(200);
+});
+
 io.on('connection', (socket) => {
     logger.info(`${socket.id} user connected`);
     socket.emit('weatherStatusUpdate', objectToSendFunc("info", "Weather service start!", SERVICE_NAME));

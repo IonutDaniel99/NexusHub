@@ -33,7 +33,7 @@ app.get('/services-status', async (req, res) => {
     await Promise.all(
         Object.entries(microservices_url).map(async ([serviceName, url]) => {
             try {
-                const response = await makeRequest(url);
+                const response = await makeRequest(url + '/status');
                 if (response.statusCode !== 200) {
                     microserviceStatus.push({
                         service_name: serviceName,

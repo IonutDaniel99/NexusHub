@@ -21,6 +21,12 @@ app.get('/', (req, res) => {
     logger.info(`Someone join on ${SERVICE_NAME}`);
     res.sendStatus(200);
 });
+
+app.get('/status', (req, res) => {
+    logger.info(`Someone check status for ${SERVICE_NAME}`);
+    res.sendStatus(200);
+});
+
 app.post('/register/save', async (req, res) => {
     const user_data = req.body.user_data;
     logger.info(`${user_data.account_name} has registered!`);
