@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "es6",
+        "allowJs": true,
+        "checkJs": false,
+        "jsx": "react",
+        "removeComments": true,
+        "noEmit": true,
+        "pretty": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        }
+    }
+}

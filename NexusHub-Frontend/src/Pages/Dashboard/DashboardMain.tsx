@@ -5,15 +5,15 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import "./dashboard.less"
 import { uniqueId } from '@blueprintjs/core/lib/esm/common/utils';
-import MosaicAdditionalControls from '../../components/MosaicAdditionalControls/MosaicAdditionalControls';
 import WeatherPanel from '../../panels/WeatherPanel/WeatherPanel';
 import useAxiosFetch from '../../hooks/useAxios';
 import { ServiceStatusUrl } from '../../config';
 import useServiceStatusStore from '../../stores/ServiceStatusStore';
-import { Dropdown, theme } from 'antd';
-import DropDownContent from './DropDownContent';
 import OnboardingPanel from '../../panels/OnboardingPanel/OnboardingPanel';
 import ConsolePanel from '../../panels/ConsolePanel/ConsolePanel';
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/src/components/ui/context-menu';
+
+
 
 export const DEFAULT_CONTROLS_WITH_CREATION = React.Children.toArray([
   <ExpandButton />,
@@ -24,7 +24,7 @@ export const DEFAULT_CONTROLS_WITH_CREATION = React.Children.toArray([
 const PANELS_MAP = {
   a: {
     title: "a",
-    component: null
+    component: <ConsolePanel />
   },
   b: {
     title: "b",
@@ -99,11 +99,17 @@ function DashboardMain() {
             toolbarControls={DEFAULT_CONTROLS_WITH_CREATION}
           >
             {panelsState[id].component === null ?
-              <Dropdown trigger={['contextMenu']} dropdownRender={() => (<DropDownContent services={data} panel_id={id} handlePanel={handlePanel} />)}>
-                <div className='flex items-center justify-center h-full text-white opacity-40'>
-                  Right Click on here
-                </div>
-              </Dropdown> : <span className='text-white'>
+              <ContextMenu>
+                <ContextMenuTrigger className="flex items-center justify-center h-full text-sm text-white text-opacity-40">Right click</ContextMenuTrigger>
+                <ContextMenuContent>
+                  <ContextMenuItem>Profile</ContextMenuItem>
+                  <ContextMenuItem>Billing</ContextMenuItem>
+                  <ContextMenuItem>Team</ContextMenuItem>
+                  <ContextMenuItem>Subscription</ContextMenuItem>
+                </ContextMenuContent>
+              </ContextMenu>
+              :
+              <span className='text-white'>
                 {panelsState[id].component}
               </span>
             }
