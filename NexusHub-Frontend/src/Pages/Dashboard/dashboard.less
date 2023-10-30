@@ -2,7 +2,7 @@
 html,
 body,
 #root,
-#app {
+#mosaic-wrapper {
   height: 100%;
   width: 100%;
   margin: 0px;
@@ -65,7 +65,7 @@ body,
 
     .mosaic-window-controls {
       .separator {
-        border-left: 1px solid @light-gray2;
+        border-left: 1px solid @dark-gray5;
       }
       .@{ns}-button {
         &,
@@ -90,6 +90,8 @@ body,
       transition: height 250ms;
       box-shadow: 0 1px 1px @pt-divider-black; 
       background: @dark-gray2;
+      justify-content: flex-start;
+      padding: 0px 10px;
 
       .@{ns}-button {
         &,

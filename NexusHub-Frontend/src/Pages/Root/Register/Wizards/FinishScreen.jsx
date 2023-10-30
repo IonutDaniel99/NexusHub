@@ -3,7 +3,7 @@ import { shallow } from "zustand/shallow";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OnboardingUrl } from "../../config";
+import { OnboardingUrl } from "../../../../config";
 
 function FinishScreen() {
   const [isLoading, setIsLoading] = useState(true);

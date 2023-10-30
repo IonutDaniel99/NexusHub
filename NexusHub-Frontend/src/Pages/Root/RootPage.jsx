@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { OnboardingUrl } from "./config";
 import useRootStore from "./RootStore";
 import { useNavigate } from "react-router-dom";
 import { _, delay } from "lodash";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { OnboardingUrl } from "../../config";
 function RootPage() {
   const navigate = useNavigate();
   const [isUserSaved, setUser] = useLocalStorage('current_user', null);

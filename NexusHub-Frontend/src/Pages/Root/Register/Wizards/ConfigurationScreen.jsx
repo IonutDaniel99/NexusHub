@@ -1,8 +1,8 @@
 import { Input } from "antd";
-import Error from "../../../../common/StatusComponents/Error";
 import useGeolocation from "../../../../utils/Geolocation/useGeolocation";
 import useRegisterWizardStore from "../RegisterWizard";
 import GoogleMapReact from 'google-map-react';
+import Error from "../../../../components/StatusComponents/Error";
 
 function ConfigurationScreen() {
   const { latitude, longitude, error } = useGeolocation();
