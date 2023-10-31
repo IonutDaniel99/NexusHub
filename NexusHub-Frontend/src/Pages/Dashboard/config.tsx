@@ -1,14 +1,16 @@
-import ConsolePanel from "@/src/panels/ConsolePanel/ConsolePanel";
-import OnboardingPanel from "@/src/panels/OnboardingPanel/OnboardingPanel";
-import WeatherPanel from "@/src/panels/WeatherPanel/WeatherPanel";
-import React from "react";
+import ConsolePanel from "@/panels/ConsolePanel/ConsolePanel";
+import OnboardingPanel from "@/panels/OnboardingPanel/OnboardingPanel";
+import WeatherPanel from "@/panels/WeatherPanel/WeatherPanel";
+import React, { ReactElement } from "react";
 import { ExpandButton, RemoveButton, SplitButton } from "react-mosaic-component";
+import { IPanel } from "./types";
 
-export const PANELS_CONFIG = {
+export const PANELS_CONFIG: Record<string, ReactElement> = {
     "Onboarding": <OnboardingPanel />,
     "Weather": <WeatherPanel />,
     "Console": <ConsolePanel />,
-}
+};
+
 
 export const DEFAULT_CONTROLS_WITH_CREATION = React.Children.toArray([
     <ExpandButton />,
@@ -16,7 +18,8 @@ export const DEFAULT_CONTROLS_WITH_CREATION = React.Children.toArray([
     <RemoveButton />,
 ]);
 
-export const PANELS_MAP = {
+
+export const PANELS_MAP: Record<string, IPanel> = {
     a: {
         title: "a",
         component: <ConsolePanel />

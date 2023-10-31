@@ -5,12 +5,12 @@ const useServiceStatusStore = create(
     devtools((set, get) => ({
         services: {},
 
-        setServices: (fetchedData) => {
+        setServices: (fetchedData: unknown) => {
             set({ services: fetchedData });
         },
 
-        addService: (newService) => {
-            set((state) => ({ services: [...state.services, newService] }));
+        addService: (newService: unknown) => {
+            set((state: any) => ({ services: [...state.services, newService] }));
         },
     }))
 );

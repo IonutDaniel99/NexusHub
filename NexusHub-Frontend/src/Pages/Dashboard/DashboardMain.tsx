@@ -1,27 +1,28 @@
-import { ExpandButton, Mosaic, MosaicWindow, MosaicWithoutDragDropContext, RemoveButton, SplitButton } from 'react-mosaic-component';
+import { Mosaic, MosaicWindow } from 'react-mosaic-component';
 import React, { useState, useEffect } from "react"
 import 'react-mosaic-component/react-mosaic-component.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
-import "./dashboard.less"
+import "@/styles/dashboard.less"
 import { uniqueId } from '@blueprintjs/core/lib/esm/common/utils';
-import useAxiosFetch from '../../hooks/useAxios';
-import { ServiceStatusUrl } from '../../config';
-import useServiceStatusStore from '../../stores/ServiceStatusStore';
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/src/components/ui/context-menu';
 import { DEFAULT_CONTROLS_WITH_CREATION, PANELS_CONFIG, PANELS_MAP } from './config';
+import useAxiosFetch, { IFetchResponse } from '@/hooks/useAxios';
+import { ServiceStatusUrl } from '@/config';
+import useServiceStatusStore from '@/stores/ServiceStatusStore';
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
 
 
 function DashboardMain() {
   const [panelsState, setPanelsState] = useState(PANELS_MAP)
 
-  const { data, error, isLoading } = useAxiosFetch(ServiceStatusUrl + '/services-status');
-  const setServices = useServiceStatusStore((state) => state.setServices);
+  const { data: services, error, isLoading }: IFetchResponse<any> = useAxiosFetch(ServiceStatusUrl + '/services-status');
+  const setServices = useServiceStatusStore((state: any) => state.setServices);
+
   useEffect(() => {
-    if (data) {
-      setServices(data); // Save the fetched data to the Zustand store
+    if (services) {
+      setServices(services); // Save the fetched services to the Zustand store
     }
-  }, [data]);
+  }, [services]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -31,8 +32,8 @@ function DashboardMain() {
     return <div>Error: Eror</div>;
   }
 
-  if (!data) {
-    return <div>No data available</div>;
+  if (!services) {
+    return <div>No services available</div>;
   }
 
   const handlePanel = (id: any, service_name: string | number) => {
@@ -44,8 +45,6 @@ function DashboardMain() {
       }
     }))
   }
-
-
 
   return (
     <div id="mosaic-wrapper">
@@ -64,7 +63,7 @@ function DashboardMain() {
                   Right click
                 </ContextMenuTrigger>
                 <ContextMenuContent>
-                  {data.map((service: any, index: React.Key) => (
+                  {services.map((service: any, index: React.Key) => (
                     <ContextMenuItem key={index} onSelect={() => handlePanel(id, service.service_name)}>
                       {service.service_name}
                     </ContextMenuItem>

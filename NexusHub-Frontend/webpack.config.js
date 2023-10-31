@@ -1,8 +1,5 @@
-const path = require('path');
-
-module.exports = {
+export default {
     // Your existing Webpack configuration here
-
     module: {
         rules: [
             // Your existing rules here
