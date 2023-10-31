@@ -1,12 +1,8 @@
 import { ReactElement } from "react";
-
 export interface IServiceData {
-    // Define the structure of your service data here
-    // For example:
-    // id: number;
-    // name: string;
-    // status: string;
-    // ...
+    "service_name": string,
+    "status_code": number,
+    "error": string | null | any
 }
 
 export interface IErrorResponse {
@@ -21,4 +17,9 @@ export interface IErrorResponse {
 export interface IPanel {
     title: string;
     component: ReactElement | null;
+}
+
+export interface IPanelConfig {
+    icon: any,
+    selectable: boolean,
 }
