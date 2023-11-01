@@ -8,11 +8,11 @@ function NameScreen() {
   const [uuid, setUuid] = useState("");
 
   const setUuidString = useRegisterWizardStore((state) => state.set_uuid_string);
-  const getAccountName = useRegisterWizardStore((state) => state.account_name);
+  const getAccountName: any = useRegisterWizardStore((state) => state.account_name);
   const setAccountName = useRegisterWizardStore((state) => state.set_account_name);
   const incrementSlide = useRegisterWizardStore((state) => state.increment_current_slide);
 
-  const onChange = (e) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> | undefined = (e) => {
     const value = e.target.value === "" ? null : e.target.value;
     setAccountName(value);
   };

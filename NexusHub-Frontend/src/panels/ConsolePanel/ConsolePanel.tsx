@@ -1,6 +1,6 @@
-import { ModeToggle } from '@/src/components/ui/mode-toggle'
-import { ConsoleUrl } from '@/src/config';
-import useAxiosFetch from '@/src/hooks/useAxios';
+import { ModeToggle } from '@/components/ui/mode-toggle'
+import { ConsoleUrl } from '@/config';
+import useAxiosFetch from '@/hooks/useAxios';
 import React from 'react'
 
 function ConsolePanel() {

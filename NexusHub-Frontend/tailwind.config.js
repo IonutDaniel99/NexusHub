@@ -1,15 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ["class"],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/**",
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './@/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
-  safelist: ["dark"],
   theme: {
     container: {
       center: true,
@@ -75,5 +72,6 @@ export default {
       },
     },
   },
+  // eslint-disable-next-line no-undef
   plugins: [require("tailwindcss-animate")],
 }

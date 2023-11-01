@@ -1,8 +1,14 @@
-import useGeolocation from "../../../../utils/Geolocation/useGeolocation";
-import useRegisterWizardStore from "../RegisterWizard";
 import GoogleMapReact from 'google-map-react';
-import Error from "../../../../components/StatusComponents/Error";
-import { Input } from "@/src/components/ui/input";
+import { Input } from "antd";
+import Error from "@/components/Error";
+import useRegisterWizardStore from '../RegisterWizard';
+import useGeolocation from '@/hooks/useGeolocation';
+
+interface ICustomInput {
+  title: string,
+  value?: string | number | any,
+  valueChanged?: any,
+}
 
 function ConfigurationScreen() {
   const { latitude, longitude, error } = useGeolocation();
@@ -18,7 +24,7 @@ function ConfigurationScreen() {
   setLatitude(latitude)
 
 
-  const CustomInput = ({ title, value, valueChanged }) => (
+  const CustomInput = ({ title, value, valueChanged }: ICustomInput) => (
     <div className="flex items-center justify-between gap-4">
       <label>{title}</label>
       <Input placeholder="Type here!" value={value} onChange={(e) => valueChanged(e.target.value)} className="w-48" />

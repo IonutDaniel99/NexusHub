@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useLocalStorage = (key, initialValue) => {
+const useLocalStorage = (key: string, initialValue?: any) => {
     // Get the initial value from localStorage or use the provided initialValue
     const storedValue = localStorage.getItem(key) || initialValue;
 
@@ -8,7 +8,7 @@ const useLocalStorage = (key, initialValue) => {
     const [value, setValue] = useState(storedValue);
 
     // Function to set a new value in localStorage and update the state
-    const setStoredValue = (newValue) => {
+    const setStoredValue = (newValue: string) => {
         localStorage.setItem(key, newValue);
         setValue(newValue);
     };

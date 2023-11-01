@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import RootPage from "./Root/RootPage.Jsx";
+import RootPage from "./Root/RootPage";
 import Register from "./Root/Register/Register";
 import DashboardMain from "./Dashboard/DashboardMain";
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function App() {
   return (

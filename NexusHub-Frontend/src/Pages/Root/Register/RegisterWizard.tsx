@@ -1,8 +1,26 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-const useRegisterWizardStore = create(
-  devtools((set, get) => ({
+interface IRegisterWizardStore {
+  current_slide: number;
+  set_current_slide: (value: number) => void;
+  increment_current_slide: () => void;
+  decrement_current_slide: () => void;
+  reset_slide: () => void;
+  account_name: string | null;
+  set_account_name: (value: string | null) => void;
+  uuid_string: string;
+  set_uuid_string: (value: string) => void;
+  latitude: number;
+  set_latitude: (value: number) => void;
+  longitude: number;
+  set_longitude: (value: number) => void;
+  city_name: string;
+  set_city_name: (value: string) => void;
+}
+
+const useRegisterWizardStore = create<IRegisterWizardStore>(
+  devtools((set) => ({
     // Slides
     current_slide: 0,
     set_current_slide: (value) => set({ current_slide: value }),
@@ -21,7 +39,7 @@ const useRegisterWizardStore = create(
     set_longitude: (value) => set({ longitude: value }),
     city_name: "",
     set_city_name: (value) => set({ city_name: value }),
-  }))
+  })) as (set: any) => IRegisterWizardStore
 );
 
 export default useRegisterWizardStore;

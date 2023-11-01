@@ -4,7 +4,7 @@ import useRegisterWizardStore from "./RegisterWizard";
 import NameScreen from "./Wizards/NameScreen";
 import ServicesScreen from "./Wizards/ServicesScreen";
 import FinishScreen from "./Wizards/FinishScreen";
-import ConfigurationScreen from "./Wizards/ConfigurationScreen.jsx";
+import ConfigurationScreen from "./Wizards/ConfigurationScreen.js";
 import { ConfigProvider, theme } from "antd";
 
 function Register() {
@@ -13,7 +13,7 @@ function Register() {
   const currentSlide = useRegisterWizardStore((state) => state.current_slide);
   const setSlide = useRegisterWizardStore((state) => state.set_current_slide);
 
-  const onChange = (value) => {
+  const onChange = (value: number) => {
     setSlide(value);
   };
   return (

@@ -1,5 +1,5 @@
-import { OnboardingUrl } from '@/src/config';
-import useAxiosFetch from '@/src/hooks/useAxios';
+import { OnboardingUrl } from '@/config';
+import useAxiosFetch from '@/hooks/useAxios';
 import React from 'react'
 
 function OnboardingPanel() {
