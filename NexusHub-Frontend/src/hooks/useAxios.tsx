@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export interface IFetchResponse<T> {
-    data: T | null;
+export interface IFetchResponse {
+    data: any | null;
     error: any;
     isLoading: boolean;
 }
 
-const useAxiosFetch = (url: string, delay?: number): [IFetchResponse<any>, () => void] => {
+const useAxiosFetch = (url: string, delay?: number): [IFetchResponse, () => void] => {
     const [data, setData] = useState<any>(null);
     const [error, setError] = useState<any>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -41,7 +41,7 @@ const useAxiosFetch = (url: string, delay?: number): [IFetchResponse<any>, () =>
         fetchData();
     };
 
-    const fetchResponse: IFetchResponse<any> = { data, error, isLoading };
+    const fetchResponse: IFetchResponse = { data, error, isLoading };
     return [fetchResponse, fetchAgain];
 };
 

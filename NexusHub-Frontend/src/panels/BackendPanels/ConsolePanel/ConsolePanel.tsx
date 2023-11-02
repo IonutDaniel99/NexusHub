@@ -1,11 +1,13 @@
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { ConsoleUrl } from '@/config';
-import useAxiosFetch from '@/hooks/useAxios';
+import useAxiosFetch, { IFetchResponse } from '@/hooks/useAxios';
 import React from 'react'
 
 function ConsolePanel() {
 
-    const { data, error, isLoading } = useAxiosFetch(ConsoleUrl + '/');
+    const [fetchResponse, fetchAgain] = useAxiosFetch(ConsoleUrl + '/') as [IFetchResponse, () => void];
+    const { data, error, isLoading } = fetchResponse;
+
 
     return (
         <div>
