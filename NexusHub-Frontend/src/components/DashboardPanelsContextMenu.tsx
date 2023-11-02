@@ -4,18 +4,18 @@ import useServiceStatusStore from '@/stores/ServiceStatusStore';
 import { IPanel, IServiceData } from '@/Pages/Dashboard/types';
 import { cn, getStatusColor } from '@/lib/utils';
 import { ServiceStatusUrl } from '@/config';
-import useAxiosFetch from '@/hooks/useAxios';
+import useAxiosFetch, { IFetchResponse } from '@/hooks/useAxios';
 import { SERVICES_CONFIG } from '@/configs/BackendServicesConfig';
 import { CLIENT_PANELS_OBJECT, CLIENT_SERVICES_CONFIG } from '@/configs/ClientServicesConfig';
 
 type IDashboardPanelsContextMenu = {
     id: string,
     handlePanel: (id: string, panel: string | number) => void,
+    fetchServiceStatus: IFetchResponse,
+    fetchAgainServiceStatus: () => void
 }
 
-function DashboardPanelsContextMenu({ id, handlePanel }: IDashboardPanelsContextMenu) {
-    const [fetchServiceStatus, fetchAgainServiceStatus] = useAxiosFetch(ServiceStatusUrl + '/services-status');
-
+function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetchAgainServiceStatus }: IDashboardPanelsContextMenu) {
     const setServices = useServiceStatusStore((state: any) => state.setServices);
 
     const renderServicesElement = (id: any) => {
