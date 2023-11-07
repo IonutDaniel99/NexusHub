@@ -1,11 +1,11 @@
-import useRegisterWizardStore from "../../../../stores/GlobalStore";
+import useGlobalStore from "../../../../stores/GlobalStore";
 import { CustomInput } from "@/Pages/Root/Register/Wizards/CustomInputComponent";
 
 function ServicesScreen() {
-  const incrementSlide = useRegisterWizardStore((state) => state.increment_current_slide);
-  const decrementSlide = useRegisterWizardStore((state) => state.decrement_current_slide);
+  const incrementSlide = useGlobalStore((state) => state.increment_current_slide);
+  const decrementSlide = useGlobalStore((state) => state.decrement_current_slide);
 
-  const setOpenWeatherApi = useRegisterWizardStore((state) => state.set_openweathermap_api);
+  const setOpenWeatherApi = useGlobalStore((state) => state.set_openweathermap_api);
 
   return (
     <div className="relative w-full h-full">

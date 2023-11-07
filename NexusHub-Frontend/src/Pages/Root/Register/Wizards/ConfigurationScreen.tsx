@@ -1,6 +1,6 @@
 import GoogleMapReact from 'google-map-react';
 import Error from "@/components/Error";
-import useRegisterWizardStore from '../../../../stores/GlobalStore';
+import useGlobalStore from '../../../../stores/GlobalStore';
 import useGeolocation from '@/hooks/useGeolocation';
 import { CustomInput } from "@/Pages/Root/Register/Wizards/CustomInputComponent";
 
@@ -8,12 +8,12 @@ import { CustomInput } from "@/Pages/Root/Register/Wizards/CustomInputComponent"
 function ConfigurationScreen() {
   const { latitude, longitude, error } = useGeolocation();
 
-  const incrementSlide = useRegisterWizardStore((state) => state.increment_current_slide);
-  const decrementSlide = useRegisterWizardStore((state) => state.decrement_current_slide);
+  const incrementSlide = useGlobalStore((state) => state.increment_current_slide);
+  const decrementSlide = useGlobalStore((state) => state.decrement_current_slide);
 
-  const setLongitude = useRegisterWizardStore((state) => state.set_longitude);
-  const setLatitude = useRegisterWizardStore((state) => state.set_latitude);
-  const setCityName = useRegisterWizardStore((state) => state.set_city_name);
+  const setLongitude = useGlobalStore((state) => state.set_longitude);
+  const setLatitude = useGlobalStore((state) => state.set_latitude);
+  const setCityName = useGlobalStore((state) => state.set_city_name);
 
 
   setLongitude(longitude)

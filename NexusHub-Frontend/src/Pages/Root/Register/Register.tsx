@@ -1,6 +1,6 @@
 import { Steps } from "antd";
 
-import useRegisterWizardStore from "../../../stores/GlobalStore";
+import useGlobalStore from "@/stores/GlobalStore"; "../../../stores/GlobalStore";
 import NameScreen from "./Wizards/NameScreen";
 import ServicesScreen from "./Wizards/ServicesScreen";
 import FinishScreen from "./Wizards/FinishScreen";
@@ -10,8 +10,8 @@ import { ConfigProvider, theme } from "antd";
 function Register() {
   const { darkAlgorithm } = theme;
 
-  const currentSlide = useRegisterWizardStore((state) => state.current_slide);
-  const setSlide = useRegisterWizardStore((state) => state.set_current_slide);
+  const currentSlide = useGlobalStore((state) => state.current_slide);
+  const setSlide = useGlobalStore((state) => state.set_current_slide);
 
   const onChange = (value: number) => {
     setSlide(value);

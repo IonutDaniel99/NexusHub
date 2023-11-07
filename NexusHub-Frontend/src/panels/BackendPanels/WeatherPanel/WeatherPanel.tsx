@@ -12,6 +12,9 @@ function WeatherPanel() {
     const [fetchResponse, fetchAgain] = useAxiosFetch(url) as [IFetchResponse, () => void];
     const { data, error, isLoading } = fetchResponse;
 
+    if (error || data?.cod > 399) {
+        return "Error"
+    }
 
     if (isLoading) {
         return "Loading"
