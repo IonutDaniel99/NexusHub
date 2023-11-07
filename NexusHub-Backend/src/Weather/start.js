@@ -31,21 +31,51 @@ app.get('/status', (req, res) => {
     res.sendStatus(200);
 });
 
+
+let cachedWeatherData = null;
+let lastFetchedTime = 0;
 app.get('/getWeatherStatus', async (req, res) => {
-    console.log(req.query)
-    const latitude = req.query.latitude
-    const longitude = req.query.longitude
-    const api = req.query.api
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric`
-    await fetch(url)
-        .then((response) => response.text())
-        .then((body) => {
-            res.status(200).send(body)
-        }).catch((error) => {
-            logger.error(`User ${user_id} failed with error ${error}`);
+    const latitude = req.query.latitude;
+    const longitude = req.query.longitude;
+    const api = req.query.api;
+
+    // Check the timestamp of the last fetched data
+    const currentTime = Date.now();
+    const timeElapsed = currentTime - lastFetchedTime;
+
+    logger.info(`Weather request initiated for ${api}!`);
+
+    if (timeElapsed < 600000 && cachedWeatherData !== null) { // Less than 10 minutes (600,000 milliseconds)
+        // Return the cached data if within the time limit
+        logger.warn('Served weather cached data!')
+        const responseData = {
+            data: JSON.parse(cachedWeatherData),
+            lastFetchedTime: lastFetchedTime
+        };
+        res.status(200).send(responseData);
+    } else {
+        logger.info('Requested new OpenWeatherMap!')
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric`;
+
+        try {
+            const response = await fetch(url);
+            const body = await response.text();
+
+            // Update the cached data and timestamp
+            cachedWeatherData = body;
+            lastFetchedTime = currentTime;
+
+            const responseData = {
+                data: JSON.parse(body),
+                lastFetchedTime: lastFetchedTime
+            };
+            res.status(200).send(responseData);
+        } catch (error) {
+            logger.error(`Weather for API ${api} failed with error ${error}`);
             res.sendStatus(401);
-        });
-})
+        }
+    }
+});
 
 io.on('connection', (socket) => {
     logger.info(`${socket.id} user connected`);

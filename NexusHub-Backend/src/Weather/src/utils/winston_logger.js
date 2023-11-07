@@ -9,6 +9,6 @@ export const logger = createLogger({
         }),
     ),
     transports: [
-        new transports.Console(),
+        new transports.Console({ level: 'debug' }),
     ]
 });
