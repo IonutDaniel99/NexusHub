@@ -7,6 +7,7 @@ import { ServiceStatusUrl } from '@/config';
 import useAxiosFetch, { IFetchResponse } from '@/hooks/useAxios';
 import { SERVICES_CONFIG } from '@/configs/BackendServicesConfig';
 import { CLIENT_PANELS_OBJECT, CLIENT_SERVICES_CONFIG } from '@/configs/ClientServicesConfig';
+import { Separator } from './ui/separator';
 
 type IDashboardPanelsContextMenu = {
     id: string,
@@ -30,7 +31,7 @@ function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetch
         }
 
         if (error) {
-            return <div>Error: {error}</div>;
+            return <div>Error: {error.message}</div>;
         }
 
         setServices(services)
@@ -43,7 +44,7 @@ function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetch
                 const service_status = service.status_code
                 return <ContextMenuItem
                     key={index}
-                    disabled={!SERVICES_CONFIG[service_name].selectable}
+                    disabled={!SERVICES_CONFIG[service_name].selectable || service_status > 300}
                     onSelect={() => handlePanel(id, service_name)}
                     className="flex items-center h-10 gap-4 px-6 hover:cursor-pointer">
                     <span className='flex items-center justify-center w-5 '>
@@ -84,7 +85,7 @@ function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetch
 
     return (
 
-        <ContextMenuContent className='flex gap-1 py-4'>
+        <ContextMenuContent className='flex gap-1 py-4 rounded-2xl'>
             <div className='w-56'>
                 <span className='flex items-center justify-center h-8 gap-2'>
                     <h1 className='font-bold'>Services</h1>
@@ -92,7 +93,8 @@ function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetch
                         onClick={fetchAgainServiceStatus}
                         className='flex items-center justify-center px-2 py-1 rounded bg-muted hover:bg-primary hover:text-primary-foreground hover:cursor-pointer'>Refresh</button>
                 </span>
-                <div className='w-3/4 h-1 mx-auto my-2 rounded-full opacity-50 bg-primary' />
+                <Separator className="flex w-3/4 mx-auto my-2" />
+
                 {renderServicesElement(id)}
             </div>
             <div className='w-[2px] rounded-full opacity-30 bg-primary-foreground' />
@@ -100,7 +102,8 @@ function DashboardPanelsContextMenu({ id, handlePanel, fetchServiceStatus, fetch
                 <span className='flex items-center justify-center h-8 gap-2'>
                     <h1 className='font-bold'>Client</h1>
                 </span>
-                <div className='w-3/4 h-1 mx-auto my-2 rounded-full opacity-50 bg-primary' />
+                <Separator className="flex w-3/4 mx-auto my-2" />
+
                 {renderClientElement(id)}
             </div>
         </ContextMenuContent>

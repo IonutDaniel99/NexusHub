@@ -1,4 +1,4 @@
-import useRegisterWizardStore from "../RegisterWizard";
+import useRegisterWizardStore from "../../../../stores/GlobalStore";
 import { shallow } from "zustand/shallow";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
@@ -12,13 +12,14 @@ function FinishScreen() {
   const navigate = useNavigate();
   const resetSlide = useRegisterWizardStore((state) => state.reset_slide);
 
-  const { uuid_string, account_name, latitude, longitude, city_name } = useRegisterWizardStore(
+  const { uuid_string, account_name, latitude, longitude, city_name, openweathermap_api } = useRegisterWizardStore(
     (state) => ({
       uuid_string: state.uuid_string,
       account_name: state.account_name,
       latitude: state.latitude,
       longitude: state.longitude,
       city_name: state.city_name,
+      openweathermap_api: state.openweathermap_api
     }),
     shallow
   );
@@ -29,6 +30,7 @@ function FinishScreen() {
     latitude,
     longitude,
     city_name,
+    openweathermap_api,
   };
 
   const handleSaveUser = () => {

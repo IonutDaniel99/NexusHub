@@ -16,9 +16,9 @@ function SettingsPanel() {
                 <SaveLayout />
                 <ThemeToggle />
                 <div className='sticky flex items-center justify-end gap-2 opacity-20'>
-                    <Checkbox id="terms2" onCheckedChange={(checked) => setIsDevMode(checked)} />
+                    <Checkbox id="devMode" onCheckedChange={(checked) => setIsDevMode(checked)} />
                     <label
-                        htmlFor="terms2"
+                        htmlFor="devMode"
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                         Developer Mode (Use at risk)

@@ -27,9 +27,23 @@ app.get('/status', (req, res) => {
     res.sendStatus(200);
 });
 
+app.get('/getUserData', async (req, res) => {
+    const user_id = req.query.user_id
+    logger.info(`User ${user_id} requested account data!`);
+    await prisma.user.findFirst({
+        where: {
+            uuid_string: user_id
+        }
+    })
+        .then((data) => res.status(200).send(data))
+        .catch((error) => {
+            logger.error(`User ${user_id} failed with error ${error}`);
+            res.sendStatus(401);
+        });
+});
+
 app.post('/register/save', async (req, res) => {
     const user_data = req.body.user_data;
-    logger.info(`${user_data.account_name} has registered!`);
     await prisma.user
         .create({
             data: {
@@ -38,6 +52,7 @@ app.post('/register/save', async (req, res) => {
                 latitude: user_data.latitude,
                 longitude: user_data.longitude,
                 city_name: user_data.city_name,
+                openweathermap_api: user_data.openweathermap_api
             },
         })
         .then(() => res.sendStatus(200))
@@ -45,6 +60,8 @@ app.post('/register/save', async (req, res) => {
             logger.error(`User ${user_data.account_name} failed with error ${error}`);
             res.sendStatus(401);
         });
+    logger.info(`${user_data.account_name} has registered!`);
+
 });
 
 app.get('/users', async (req, res) => {

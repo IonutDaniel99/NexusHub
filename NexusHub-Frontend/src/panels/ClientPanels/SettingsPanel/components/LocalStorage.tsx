@@ -34,11 +34,11 @@ function LocalStorage() {
         <AccordionItem value="LocalStorageOptions">
             <AccordionTrigger className="h-4 pb-6 text-lg font-medium outline-none">Local Storage</AccordionTrigger>
             <AccordionContent>
-                <div className='grid items-center grid-cols-2 gap-4 p-4'>
+                <div className='flex flex-wrap items-center gap-4 p-4'>
                     <Button variant={'destructive'} size={'sm'} onClick={clearLocalStorage}>Clear Local Storage</Button>
                     <Button variant={'destructive'} size={'sm'} onClick={clearSessionStorage}>Clear Session Storage</Button>
-                    <Button variant={'destructive'} size={'sm'} onClick={clearAllStorage}>Clear Cookies</Button>
-                    <Button variant={'destructive'} size={'sm'} >Clear Everything</Button>
+                    <Button variant={'destructive'} size={'sm'} onClick={clearCookiesStorage}>Clear Cookies</Button>
+                    <Button variant={'destructive'} size={'sm'} onClick={clearAllStorage}>Clear Everything</Button>
                 </div>
             </AccordionContent>
         </AccordionItem>

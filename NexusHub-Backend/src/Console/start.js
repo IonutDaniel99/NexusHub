@@ -2,6 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { logger } from './utils/winston_logger.js';
+import cors from "cors";
 
 const app = express();
 const server = createServer(app);
@@ -12,6 +13,8 @@ const io = new Server(server, {
 });
 const SERVICE_NAME = 'CONSOLE';
 const CONSOLE_MICROSERVICE_PORT = 5001;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     logger.info(`Someone join on ${SERVICE_NAME}`);

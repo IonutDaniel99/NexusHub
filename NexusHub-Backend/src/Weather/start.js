@@ -31,6 +31,22 @@ app.get('/status', (req, res) => {
     res.sendStatus(200);
 });
 
+app.get('/getWeatherStatus', async (req, res) => {
+    console.log(req.query)
+    const latitude = req.query.latitude
+    const longitude = req.query.longitude
+    const api = req.query.api
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric`
+    await fetch(url)
+        .then((response) => response.text())
+        .then((body) => {
+            res.status(200).send(body)
+        }).catch((error) => {
+            logger.error(`User ${user_id} failed with error ${error}`);
+            res.sendStatus(401);
+        });
+})
+
 io.on('connection', (socket) => {
     logger.info(`${socket.id} user connected`);
     socket.emit('weatherStatusUpdate', objectToSendFunc("info", "Weather service start!", SERVICE_NAME));

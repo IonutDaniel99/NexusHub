@@ -1,4 +1,3 @@
-import { ModeToggle } from '@/components/ui/mode-toggle'
 import { ConsoleUrl } from '@/config';
 import useAxiosFetch, { IFetchResponse } from '@/hooks/useAxios';
 import React from 'react'
@@ -11,8 +10,7 @@ function ConsolePanel() {
 
     return (
         <div>
-            console:{data}
-            <ModeToggle />
+            console: {data}
         </div>
     )
 }

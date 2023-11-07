@@ -6,6 +6,7 @@ import { delay } from "lodash";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { OnboardingUrl } from "../../config";
 import useRootStore from "@/stores/RootStore";
+import { Button } from "@/components/ui/button";
 
 interface IUser {
   uuid_string: string;
@@ -66,8 +67,8 @@ function RootPage() {
 
   return (
     <>
-      <div className="relative flex items-center justify-center w-screen h-screen">
-        <div className="flex flex-col items-center w-5/12 h-4/6 justify-evenly">
+      <div className="relative flex items-center justify-center w-screen h-screen bg-foreground text-background">
+        <div className="flex flex-col items-center w-5/12 text-white h-4/6 justify-evenly">
           <div className="w-40 h-40">
             <img src={"https://via.placeholder.com/150"} alt="React Logo" className="w-full h-full" />
           </div>
@@ -80,22 +81,21 @@ function RootPage() {
                 <p className="font-medium">Select User</p>
                 <div className="grid grid-cols-3 grid-rows-3 gap-6">
                   {users?.map((user, index) => (
-                    <button
+                    <Button
                       key={index}
                       type="button"
-                      className={`${getSelectedUser !== user.uuid_string ? "root_user_button_not_selected" : "root_user_button_selected"}`}
+                      variant={getSelectedUser !== user.uuid_string ? "default" : "secondary"}
                       onClick={() => handleUserChange(user)}
-                      title={user.account_name}
                     >
                       {user.account_name}
-                    </button>
+                    </Button>
                   ))}
                 </div>
                 <div className="flex items-center w-full justify-evenly">
                   <button type="button" className="slider-wizard-next-button" disabled={!getSelectedUser} onClick={handleJoinButton}>
                     Join
                   </button>
-                  {users?.length && users.length <= 9 && (
+                  {(users?.length <= 9) && (
                     <Link to="/register" className="select-register-button-alternative">
                       Register
                     </Link>

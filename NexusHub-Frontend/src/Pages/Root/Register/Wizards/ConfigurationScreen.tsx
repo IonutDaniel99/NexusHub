@@ -1,14 +1,9 @@
 import GoogleMapReact from 'google-map-react';
-import { Input } from "antd";
 import Error from "@/components/Error";
-import useRegisterWizardStore from '../RegisterWizard';
+import useRegisterWizardStore from '../../../../stores/GlobalStore';
 import useGeolocation from '@/hooks/useGeolocation';
+import { CustomInput } from "@/Pages/Root/Register/Wizards/CustomInputComponent";
 
-interface ICustomInput {
-  title: string,
-  value?: string | number | any,
-  valueChanged?: any,
-}
 
 function ConfigurationScreen() {
   const { latitude, longitude, error } = useGeolocation();
@@ -16,20 +11,13 @@ function ConfigurationScreen() {
   const incrementSlide = useRegisterWizardStore((state) => state.increment_current_slide);
   const decrementSlide = useRegisterWizardStore((state) => state.decrement_current_slide);
 
-  const setLongitude = useRegisterWizardStore((state) => state.set_latitude);
-  const setLatitude = useRegisterWizardStore((state) => state.set_longitude);
+  const setLongitude = useRegisterWizardStore((state) => state.set_longitude);
+  const setLatitude = useRegisterWizardStore((state) => state.set_latitude);
   const setCityName = useRegisterWizardStore((state) => state.set_city_name);
+
 
   setLongitude(longitude)
   setLatitude(latitude)
-
-
-  const CustomInput = ({ title, value, valueChanged }: ICustomInput) => (
-    <div className="flex items-center justify-between gap-4">
-      <label>{title}</label>
-      <Input placeholder="Type here!" value={value} onChange={(e) => valueChanged(e.target.value)} className="w-48" />
-    </div>
-  )
 
   return (
     <div className="relative w-full h-full">
