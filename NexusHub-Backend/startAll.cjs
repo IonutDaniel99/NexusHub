@@ -1,4 +1,4 @@
-const { spawn } = require('child_process');
+const {spawn} = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
@@ -6,7 +6,7 @@ const microservicesDir = path.join(__dirname, 'src');
 
 // Function to find directories with 'start.js'
 const getStartDirectories = () => {
-    return fs.readdirSync(microservicesDir, { withFileTypes: true })
+    return fs.readdirSync(microservicesDir, {withFileTypes: true})
         .filter(dirent => dirent.isDirectory() && fs.existsSync(path.join(microservicesDir, dirent.name, 'start.js')))
         .map(dirent => dirent.name);
 };
@@ -17,7 +17,12 @@ startDirectories.forEach(directory => {
     const folderPath = path.join(microservicesDir, directory);
     const startJSPath = path.join(folderPath, 'start.js');
 
-    const child = spawn('cmd', ['/k', 'node', startJSPath], { cwd: folderPath, detached: true, shell: true, windowsHide: false });
+    const child = spawn('cmd', ['/k', 'nodemon', startJSPath], {
+        cwd: folderPath,
+        detached: true,
+        shell: true,
+        windowsHide: false
+    });
 
     child.stdout.on('data', data => {
         console.log(`[${directory} stdout] ${data}`);

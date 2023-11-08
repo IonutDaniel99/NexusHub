@@ -1,8 +1,8 @@
 // System Variabiles
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import { logger } from './src/utils/winston_logger.js';
+import {PrismaClient} from '@prisma/client';
+import {logger} from './src/utils/winston_logger.js';
 
 
 const ONBOARDING_MICROSERVICE_PORT = 5000;
@@ -35,7 +35,14 @@ app.get('/getUserData', async (req, res) => {
             uuid_string: user_id
         }
     })
-        .then((data) => res.status(200).send(data))
+        .then((data) => {
+            if (data === null) {
+                logger.error(`${user_id} doesnt exist in DB. Throw 404!`)
+                return res.sendStatus(404)
+            } else {
+                return res.status(200).send(data)
+            }
+        })
         .catch((error) => {
             logger.error(`User ${user_id} failed with error ${error}`);
             res.sendStatus(401);
@@ -69,7 +76,7 @@ app.get('/users', async (req, res) => {
         const users = await prisma.user.findMany();
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ error: 'Error fetching users' });
+        res.status(500).json({error: 'Error fetching users'});
     }
 });
 

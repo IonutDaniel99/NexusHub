@@ -4,7 +4,7 @@ import React from "react";
 import {unixToHHmm} from "@/panels/BackendPanels/WeatherPanel/functions";
 
 const WeatherSubDetails = ({weatherData}) => {
-    return <div className={'px-4 pb-4 max-w-2xl'}>
+    return <div className={'px-4 pb-4'}>
         <div className={'flex justify-between flex-wrap gap-4'}>
             <div className="h-9 flex w-20">
                 <div

@@ -1,24 +1,31 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import {Navigate, Outlet} from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { ThemeProvider } from './ui/theme-provider';
+import {ThemeProvider} from './ui/theme-provider';
 import useAxiosFetch from '@/hooks/useAxios';
-import { OnboardingUrl } from '@/config';
+import {OnboardingUrl} from '@/config';
 import useGlobalStore from '@/stores/GlobalStore';
 
 const ProtectedRoute = () => {
-  const [current_user] = useLocalStorage('current_user');
-  const [user_logged] = useLocalStorage('current_user_login');
-  if (!current_user || !user_logged) {
-    return <Navigate to="/" replace />;
-  }
-  const [user_id] = useLocalStorage('current_user');
-  const [fetchUserData] = useAxiosFetch(OnboardingUrl + `/getUserData?user_id=${user_id}`);
+    const [current_user, set, remove_current_user] = useLocalStorage('current_user');
+    const [user_logged, set_user_logged, delete_user_logged] = useLocalStorage('current_user_login');
 
-  useGlobalStore.setState(fetchUserData.data)
+    const [fetchUserData] = useAxiosFetch(OnboardingUrl + `/getUserData?user_id=${current_user}`);
+    const {data, error} = fetchUserData
 
-  return <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" >
-    <Outlet />
-  </ThemeProvider>
+    if (error) {
+        set_user_logged(false)
+        remove_current_user()
+        return <Navigate to="/" replace/>;
+    }
+    
+    if (!current_user || !user_logged) {
+        return <Navigate to="/" replace/>;
+    }
+    useGlobalStore.setState(data)
+
+    return <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <Outlet/>
+    </ThemeProvider>
 
 };
 
