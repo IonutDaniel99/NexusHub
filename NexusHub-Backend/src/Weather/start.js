@@ -1,11 +1,11 @@
 import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import {createServer} from 'http';
+import {Server} from 'socket.io';
 import cors from 'cors';
 
 // Configs Imports
-import { logger } from './src/utils/winston_logger.js';
-import { objectToSendFunc } from './src/utils/data_send.js';
+import {logger} from './src/utils/winston_logger.js';
+import {objectToSendFunc} from './src/utils/data_send.js';
 
 const app = express();
 const server = createServer(app);
@@ -55,8 +55,7 @@ app.get('/getWeatherStatus', async (req, res) => {
         res.status(200).send(responseData);
     } else {
         logger.info('Requested new OpenWeatherMap!')
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric`;
-
+        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric&cnt=6`;
         try {
             const response = await fetch(url);
             const body = await response.text();

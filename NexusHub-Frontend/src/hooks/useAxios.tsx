@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 
 export interface IFetchResponse {
@@ -19,11 +19,13 @@ const useAxiosFetch = (url: string, delay?: number): [IFetchResponse, () => void
                 setTimeout(async () => {
                     const response = await axios.get(url);
                     setData(response.data);
+                    setError(null)
                     setIsLoading(false);
                 }, delay);
             } else {
                 const response = await axios.get(url);
                 setData(response.data);
+                setError(null)
                 setIsLoading(false);
             }
         } catch (error: any) {
@@ -41,7 +43,7 @@ const useAxiosFetch = (url: string, delay?: number): [IFetchResponse, () => void
         fetchData();
     };
 
-    const fetchResponse: IFetchResponse = { data, error, isLoading };
+    const fetchResponse: IFetchResponse = {data, error, isLoading};
     return [fetchResponse, fetchAgain];
 };
 
