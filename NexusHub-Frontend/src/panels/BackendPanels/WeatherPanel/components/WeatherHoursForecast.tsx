@@ -1,5 +1,5 @@
 import {WeatherList} from "@/panels/BackendPanels/WeatherPanel/types";
-import {displayWeatherIconById, unixToHHmm} from "@/panels/BackendPanels/WeatherPanel/functions";
+import {displayWeatherAssetsById, unixToHHmm} from "@/panels/BackendPanels/WeatherPanel/functions";
 import React from "react";
 
 const WeatherHoursForecast = ({weatherData}) => {
@@ -15,7 +15,7 @@ const WeatherHoursForecast = ({weatherData}) => {
                         <img
                             className={'w-10 h-10'}
                             alt={''}
-                            src={displayWeatherIconById(weatherCard.weather[0].id, weatherCard.dt)}/>
+                            src={displayWeatherAssetsById(weatherCard.weather[0].id, weatherCard.dt)}/>
                         <div className={'flex flex-col'}>
                             <span
                                 className={'font-semibold opacity-90 text-xl'}>{weatherCard.main.temp_max.toFixed()}°</span>

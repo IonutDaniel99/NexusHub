@@ -1,17 +1,17 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  height: 100% !important;
-  width: 100% !important;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+    width: 100% !important;
+    scrollbar-gutter: stable;
+    color: rgba(255, 255, 255, 0.87);
 
-  color: rgba(255, 255, 255, 0.87);
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
 
 @tailwind base;
@@ -19,68 +19,86 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.75rem;
-  }
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --radius: 0.75rem;
+    }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+    }
 }
 
-*{
-  border-color: hsl(var(--border));
+* {
+    border-color: hsl(var(--border));
 }
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    height: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.40);
+}
+
 
 .select-register-button-alternative {
-  @apply text-gray-100 hover:text-white border border-gray-600 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed w-40
+    @apply text-gray-100 hover:text-white border border-gray-600 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed w-40
 }
 
 .slider-wizard-next-button {
-  @apply text-blue-100 hover:text-white border border-blue-700 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:border-gray-600 disabled:bg-gray-800 disabled:text-gray-400 w-40 transition
-  ease-in-out duration-300
+    @apply text-blue-100 hover:text-white border border-blue-700 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:border-gray-600 disabled:bg-gray-800 disabled:text-gray-400 w-40 transition
+    ease-in-out duration-300
 }
 
 .root_user_button_not_selected {
-  @apply font-medium rounded-lg w-36 truncate text-sm px-5 py-2.5 text-center mr-2 mb-2 border border-gray-600 text-gray-400 hover:text-white hover:bg-gray-600 focus:ring-gray-800 duration-300 ease-in-out transition-all
+    @apply font-medium rounded-lg w-36 truncate text-sm px-5 py-2.5 text-center mr-2 mb-2 border border-gray-600 text-gray-400 hover:text-white hover:bg-gray-600 focus:ring-gray-800 duration-300 ease-in-out transition-all
 }
+
 .root_user_button_selected {
-  @apply font-medium rounded-lg w-36 truncate text-sm px-5 py-2.5 text-center mr-2 mb-2 border border-yellow-300 text-white hover:text-black hover:bg-yellow-400 focus:ring-yellow-900 duration-300 ease-in-out transition-all
+    @apply font-medium rounded-lg w-36 truncate text-sm px-5 py-2.5 text-center mr-2 mb-2 border border-yellow-300 text-white hover:text-black hover:bg-yellow-400 focus:ring-yellow-900 duration-300 ease-in-out transition-all
 }
