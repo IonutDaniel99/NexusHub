@@ -45,12 +45,8 @@ function WeatherHealthAndSafety({weatherData}) {
             colorOfRain = redBubble;
         }
 
-        return (
-            <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{typeOfRain}</span>
-                {colorOfRain}
-            </div>
-        );
+
+        return generateHtmlCard(typeOfRain, colorOfRain);
     }
 
     const calculateOutdoorLogic = () => {
@@ -62,8 +58,8 @@ function WeatherHealthAndSafety({weatherData}) {
             3: "Very poor",
         };
 
-        let outdoorStatus = types[2];
-        let bubble = yellowBubble;
+        let outdoorStatus: string;
+        let bubble: React.JSX.Element;
 
         if (precipitations >= 0.5) {
             outdoorStatus = types[3];
@@ -80,13 +76,7 @@ function WeatherHealthAndSafety({weatherData}) {
                 bubble = redBubble;
             }
         }
-
-        return (
-            <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{outdoorStatus}</span>
-                {bubble}
-            </div>
-        );
+        return generateHtmlCard(outdoorStatus, bubble)
     };
 
     const calculateClothingLogic = () => {
@@ -124,12 +114,7 @@ function WeatherHealthAndSafety({weatherData}) {
             }
         }
 
-        return (
-            <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{typeOfCloth}</span>
-                {colorOfCloth}
-            </div>
-        );
+        return generateHtmlCard(typeOfCloth, colorOfCloth)
     };
 
     const calculateHeatstrokeRiskLogic = () => {
@@ -154,13 +139,8 @@ function WeatherHealthAndSafety({weatherData}) {
             heatstrokeRisk = types[3]; // Danger
             colorOfRisk = redBubble
         }
+        return generateHtmlCard(heatstrokeRisk, colorOfRisk)
 
-        return (
-            <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{heatstrokeRisk}</span>
-                {colorOfRisk}
-            </div>
-        );
     };
 
     const calculateWindSpeedRisk = () => {
@@ -184,13 +164,7 @@ function WeatherHealthAndSafety({weatherData}) {
             windRisk = types[3]; // High
             colorOfWind = redBubble
         }
-
-        return (
-            <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{windRisk}</span>
-                {colorOfWind}
-            </div>
-        );
+        return generateHtmlCard(windRisk, colorOfWind)
     };
 
     const calculateActivitiesLogic = () => {
@@ -202,8 +176,9 @@ function WeatherHealthAndSafety({weatherData}) {
             3: "Great",
         };
 
-        let activityFeasibility = types[3]; // Default to "Great"
-        let colorOfActivity = greenBubble
+        let activityFeasibility: string; // Default to "Great"
+        let colorOfActivity: React.JSX.Element
+        
         if (precipitations >= 0.5) {
             activityFeasibility = types[1]; // "Very Poor" if heavy precipitation
             colorOfActivity = redBubble
@@ -220,14 +195,17 @@ function WeatherHealthAndSafety({weatherData}) {
 
             }
         }
+        return generateHtmlCard(activityFeasibility, colorOfActivity)
+    };
 
+    function generateHtmlCard(activity_status: string, color: JSX.Element) {
         return (
             <div className="flex flex-row items-center justify-end text-opacity-80 text-sm font-normal">
-                <span className="text-right">{activityFeasibility}</span>
-                {colorOfActivity}
+                <span className="text-right">{activity_status}</span>
+                {color}
             </div>
         );
-    };
+    }
 
     const healthAndSafetyCards = [
         {

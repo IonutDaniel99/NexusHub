@@ -1,23 +1,27 @@
 {
-    "name": "nexushub-backend",
-    "version": "1.0.0",
-    "main": "start.js",
-    "type": "module",
-    "scripts": {
-        "startAll": "nodemon startAll.cjs"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "@prisma/client": "^5.5.2",
-        "cors": "^2.8.5",
-        "express": "^4.18.2",
-        "nodemon": "^2.0.20",
-        "prisma": "^5.1.1",
-        "request": "^2.88.2",
-        "socket.io": "^4.7.2",
-        "uuid": "^9.0.0",
-        "winston": "^3.10.0"
-    }
+  "name": "nexushub-backend",
+  "version": "1.0.0",
+  "main": "start.js",
+  "type": "module",
+  "scripts": {
+    "startAll": "nodemon startAll.cjs",
+    "startServices": "nodemon ./src/Services_Status/start.js",
+    "startOnboarding": "nodemon ./src/Onboarding/start.js",
+    "startWeather": "nodemon ./src/Weather/start.js",
+    "startConsole": "nodemon ./src/Console/start.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.5.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "prisma": "^5.1.1",
+    "request": "^2.88.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0"
+  }
 }

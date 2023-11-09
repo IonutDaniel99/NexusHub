@@ -6,8 +6,8 @@ import {OnboardingUrl} from '@/config';
 import useGlobalStore from '@/stores/GlobalStore';
 
 const ProtectedRoute = () => {
-    const [current_user, set, remove_current_user] = useLocalStorage('current_user');
-    const [user_logged, set_user_logged, delete_user_logged] = useLocalStorage('current_user_login');
+    const [current_user, , remove_current_user] = useLocalStorage('current_user');
+    const [user_logged, set_user_logged] = useLocalStorage('current_user_login');
 
     const [fetchUserData] = useAxiosFetch(OnboardingUrl + `/getUserData?user_id=${current_user}`);
     const {data, error} = fetchUserData
@@ -17,7 +17,7 @@ const ProtectedRoute = () => {
         remove_current_user()
         return <Navigate to="/" replace/>;
     }
-    
+
     if (!current_user || !user_logged) {
         return <Navigate to="/" replace/>;
     }
