@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import {PrismaClient} from '@prisma/client';
-import {logger} from './src/utils/winston_logger.js';
+import {logger} from '../../utils/winston_logger.js';
 
 
 const ONBOARDING_MICROSERVICE_PORT = 5000;
@@ -73,7 +73,7 @@ app.post('/register/save', async (req, res) => {
 
 app.get('/users', async (req, res) => {
     try {
-        const users = await prisma.user.findMany();
+        const users = await prisma.user.findMany()
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json({error: 'Error fetching users'});

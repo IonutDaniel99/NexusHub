@@ -20,11 +20,10 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="2788550f-fd43-464d-87aa-49f7d50a7372" object-ref="schemas/main/tables/User" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="2788550f-fd43-464d-87aa-49f7d50a7372" dataset="main.sqlite_sequence" active-filter-id="" />
     <filter-actions connection-id="2788550f-fd43-464d-87aa-49f7d50a7372" dataset="main.User" active-filter-id="EMPTY_FILTER">
       <filter id="746be020-11e9-45ef-a4ea-45b3502089bc" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
@@ -54,7 +53,7 @@
           <tns-folder value="" />
           <tns-profile value="" />
           <files>
-            <file path="C:\PROJECTS\NexusHub\NexusHub-Backend\src\Onboarding\prisma\dev.db" schema="main" />
+            <file path="C:\PROJECTS\NexusHub\NexusHub-Backend\src\services\Onboarding\prisma\dev.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
@@ -527,5 +526,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>

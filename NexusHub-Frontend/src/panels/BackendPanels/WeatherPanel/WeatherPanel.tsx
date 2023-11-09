@@ -1,4 +1,4 @@
-import {WeatherUrl} from '@/config';
+import {WeatherUrl} from '@/configs/GlobalsServicesURL';
 import useAxiosFetch, {IFetchResponse} from '@/hooks/useAxios';
 import useGlobalStore from '@/stores/GlobalStore';
 import React from 'react'

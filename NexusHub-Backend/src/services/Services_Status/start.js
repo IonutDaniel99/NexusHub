@@ -1,21 +1,14 @@
 import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import {createServer} from 'http';
 import cors from 'cors';
 import request from "request"
 
-// Configs Imports
-import { logger } from './src/utils/winston_logger.js';
-import { microservices_url } from './config/microservices_url.js';
+import {logger} from '../../utils/winston_logger.js';
+import {microservices_url} from '../../utils/microservices_url.js';
 
 const app = express();
 const server = createServer(app);
 
-const io = new Server(server, {
-    cors: {
-        origin: '*',
-    },
-});
 const PORT = 9998;
 const SERVICE_NAME = 'GLOBAL';
 

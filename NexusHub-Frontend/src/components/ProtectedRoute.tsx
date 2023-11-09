@@ -2,7 +2,7 @@ import {Navigate, Outlet} from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import {ThemeProvider} from './ui/theme-provider';
 import useAxiosFetch from '@/hooks/useAxios';
-import {OnboardingUrl} from '@/config';
+import {OnboardingUrl} from '@/configs/GlobalsServicesURL';
 import useGlobalStore from '@/stores/GlobalStore';
 
 const ProtectedRoute = () => {

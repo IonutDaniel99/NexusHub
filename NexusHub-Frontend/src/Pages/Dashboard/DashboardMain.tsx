@@ -9,7 +9,7 @@ import {INITIAL_TREE_VALUE, PANELS_MAP} from './config';
 import DashboardPanelsContextMenu from '@/components/DashboardPanelsContextMenu';
 import {ContextMenu, ContextMenuTrigger} from '@/components/ui/context-menu';
 import {GLOBAL_PANELS_CONFIG} from '@/configs/GlobalsPanel';
-import {ServiceStatusUrl} from '@/config';
+import {ServiceStatusUrl} from '@/configs/GlobalsServicesURL';
 import useAxiosFetch from '@/hooks/useAxios';
 import useDashboardPanelsStore from '@/stores/DashboardPanelsStore';
 import useLocalStorage from '@/hooks/useLocalStorage';
