@@ -8,7 +8,7 @@ import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hov
 import {Button} from "@/components/ui/button";
 import {weatherDescriptions} from "@/panels/BackendPanels/WeatherPanel/utils";
 import WeatherSubDetails from "@/panels/BackendPanels/WeatherPanel/components/WeatherSubDetails";
-import {displayWeatherIconById, timestampToReadable} from "@/panels/BackendPanels/WeatherPanel/functions";
+import {displayWeatherAssetsById, timestampToReadable} from "@/panels/BackendPanels/WeatherPanel/functions";
 import WeatherHoursForecast from "@/panels/BackendPanels/WeatherPanel/components/WeatherHoursForecast";
 import LoadingComponent from "@/components/LoadingComponent";
 import WeatherHealthAndSafety from "@/panels/BackendPanels/WeatherPanel/components/WeatherHealthAndSafety";
@@ -35,13 +35,14 @@ function WeatherPanel() {
 
 
     return (
-        <div className={'h-full text-secondary-foreground text-white overflow-y-auto flex items-center justify-center'}>
+        <div
+            className={'h-full overflow-y-scroll text-secondary-foreground text-white flex items-center justify-center'}>
             <div className={'absolute h-full w-full -z-50 bg-cover scale-105'}
                  style={{
-                     backgroundImage: `url(${displayWeatherIconById(weatherData.data.list[0].weather[0].id, weatherData.data.list[0].dt, true)})`
+                     backgroundImage: `url(${displayWeatherAssetsById(weatherData.data.list[0].weather[0].id, weatherData.data.list[0].dt, true)})`
                  }}>
             </div>
-            <div className={'h-full pt-1 max-w-3xl flex-wrap'}>
+            <div className={'h-full pt-1 max-w-2xl flex-wrap'}>
                 <div className='w-full flex justify-end items-center'>
                     <HoverCard>
                         <HoverCardTrigger
@@ -61,7 +62,8 @@ function WeatherPanel() {
                         <div className="h-6 text-sm leading-6 overflow-hidden whitespace-nowrap font-bold">
                             Current weather in {weatherData.data.city.name}
                         </div>
-                        <div className="h-4 text-xs leading-4 text-gray-50 font-semibold">{moment().format('LLL')}</div>
+                        <div
+                            className="h-4 text-xs leading-4 text-gray-50 font-semibold">{moment().format('LLL')}</div>
                     </div>
                 </div>
                 <div className="flex pl-4 flex-col items-center w-full">
@@ -70,7 +72,7 @@ function WeatherPanel() {
                             alt={'g'}
                             className="w-18 h-18"
                             title="Mostly cloudy"
-                            src={displayWeatherIconById(weatherData.data.list[0].weather[0].id, weatherData.data.list[0].dt)}
+                            src={displayWeatherAssetsById(weatherData.data.list[0].weather[0].id, weatherData.data.list[0].dt)}
                         />
                         <span className="text-white ml-2 text-4xl leading-16 flex items-center decoration-0">
                             <span className="text-5xl">{weatherData.data.list[0].main.temp.toFixed()}</span>

@@ -16,6 +16,7 @@ import rainBg from "./Backgrounds/rain.png"
 import snowBg from "./Backgrounds/snow.png"
 import sunnyBg from "./Backgrounds/sunny.png"
 import thunderBg from "./Backgrounds/thunderstorm.png"
+import mostCloudyBg from "./Backgrounds/mostcloudy_sunset.png"
 
 
 export const weatherBackgroundById = {
@@ -26,6 +27,7 @@ export const weatherBackgroundById = {
     "700": fogBg,
     "800_day": sunnyBg,
     "800_night": clearNightBg,
+    "900_dawn": mostCloudyBg,
     "900": cloudyBg,
 };
 export const weatherIconsById = {

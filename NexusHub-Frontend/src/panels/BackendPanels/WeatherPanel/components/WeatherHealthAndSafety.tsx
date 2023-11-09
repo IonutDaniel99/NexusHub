@@ -65,9 +65,9 @@ function WeatherHealthAndSafety({weatherData}) {
             outdoorStatus = types[3];
             bubble = redBubble;
         } else {
-            if (feelsLike > 20 && windSpeed < 15) {
+            if (feelsLike > 8 && windSpeed < 15 && precipitations < 0.2) {
                 outdoorStatus = types[1];
-                bubble = yellowBubble;
+                bubble = greenBubble;
             } else if ((feelsLike <= 20 && feelsLike >= 10) || windSpeed >= 15) {
                 outdoorStatus = types[2];
                 bubble = yellowBubble;
@@ -178,22 +178,16 @@ function WeatherHealthAndSafety({weatherData}) {
 
         let activityFeasibility: string; // Default to "Great"
         let colorOfActivity: React.JSX.Element
-        
-        if (precipitations >= 0.5) {
+
+        if (feelsLike <= 5 && windSpeed > 15 && precipitations >= 0.5) {
             activityFeasibility = types[1]; // "Very Poor" if heavy precipitation
             colorOfActivity = redBubble
+        } else if (feelsLike >= 10 && windSpeed < 5 && precipitations < 0.2) {
+            activityFeasibility = types[3]; // "Great" if conditions are ok
+            colorOfActivity = greenBubble
         } else {
-            if (feelsLike < 10 || feelsLike > 30 || windSpeed > 25) {
-                activityFeasibility = types[1]; // "Very Poor" if conditions are extreme
-                colorOfActivity = redBubble
-            } else if ((feelsLike >= 10 && feelsLike <= 20) && windSpeed < 15) {
-                activityFeasibility = types[3]; // "Great" for mild conditions with low wind
-                colorOfActivity = greenBubble
-            } else {
-                activityFeasibility = types[2]; // "Fair" for other acceptable conditions
-                colorOfActivity = yellowBubble
-
-            }
+            activityFeasibility = types[2]; // "Fair" for other acceptable conditions
+            colorOfActivity = yellowBubble
         }
         return generateHtmlCard(activityFeasibility, colorOfActivity)
     };
@@ -245,7 +239,7 @@ function WeatherHealthAndSafety({weatherData}) {
             {healthAndSafetyCards.map((card, index) => (
                 <div
                     key={index}
-                    className="w-64 bg-opacity-10 bg-white flex relative cursor-pointer h-12 rounded-2xl p-2.5 px-3 flex-row items-center z-2 border-2 border-transparent">
+                    className="w-64 bg-opacity-10 bg-white flex relative h-12 rounded-2xl p-2.5 px-3 flex-row items-center z-2 border-2 border-transparent">
                     <div
                         className="flex items-center justify-center flex-shrink-0 bg-opacity-20 bg-black w-9 h-9 rounded-full text-white">
                         {card.icon}

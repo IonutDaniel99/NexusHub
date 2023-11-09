@@ -4,7 +4,73 @@ import React from "react";
 import {unixToHHmm} from "@/panels/BackendPanels/WeatherPanel/functions";
 
 const WeatherSubDetails = ({weatherData}) => {
-    return <div className={'px-4 pb-4'}>
+
+    const windPopupInfoLogic = () => {
+        const windSpeed = weatherData.data.list[0].wind.speed.toFixed(0);
+        const windSpeedDetails = {
+            1: {
+                title: "Light air (0 - 5 km/h)",
+                description: "Direction shown by smoke drift but not by wind vanes."
+            },
+            2: {
+                title: "Light breeze (6 - 11 km/h)",
+                description: "Wind felt on face; leaves rustle; wind vane moved by wind."
+            },
+            3: {
+                title: "Gentle breeze (11 - 20 km/h)",
+                description: "Leaves and small twigs in constant motion."
+            },
+            4: {
+                title: "Strong breeze (20+ km/h)",
+                description: "Large branches in motion ; whistling heard in telegraph wires; umbrellas used with difficulty."
+            }
+        }
+        let windInfo: { title: string, description: string } = {
+            title: "",
+            description: ""
+        };
+        switch (true) {
+            case windSpeed > 20:
+                windInfo = windSpeedDetails[1];
+                break;
+            case windSpeed > 11:
+                windInfo = windSpeedDetails[3];
+                break;
+            case windSpeed > 6:
+                windInfo = windSpeedDetails[2];
+                break;
+            case windSpeed <= 6:
+                windInfo = windSpeedDetails[1];
+                break;
+        }
+
+        return windInfo;
+    }
+    const windPopupInfo: { title: string, description: string } = windPopupInfoLogic()
+
+    const visiblitiyPopupInfo = () => {
+        const visibility = weatherData.data.list[0].visibility / 1000 // 10000meters divided by 1000
+        const visibilityDetails = {
+            1: "Good visibility (5 - 10 km)",
+            2: "Moderate visibility (2 - 5 km)",
+            3: "Poor visibility (1 - 2 km)",
+            4: "Bad visibility (0 - 1 km)",
+        }
+        switch (true) {
+            case visibility > 5:
+                return visibilityDetails[1];
+            case visibility > 2:
+                return visibilityDetails[2];
+            case visibility > 1:
+                return visibilityDetails[3];
+            case visibility <= 1:
+                return visibilityDetails[4];
+            default:
+                return visibilityDetails[4]
+        }
+    }
+
+    return <div className={'px-4 pb-4 flex items-center justify-center'}>
         <div className={'flex justify-between flex-wrap gap-4'}>
             <div className="h-9 flex w-20">
                 <div
@@ -26,9 +92,8 @@ const WeatherSubDetails = ({weatherData}) => {
                             </div>
                         </HoverCardTrigger>
                         <HoverCardContent align={"end"} className={'flex flex-col gap-3'}>
-                            <span className={'font-bold'}>Light breeze (6 - 11 km/h)</span>
-                            Wind felt on face; leaves rustle;
-                            wind vane moved by wind.
+                            <span className={'font-bold'}>{windPopupInfo.title}</span>
+                            {windPopupInfo.description}
                         </HoverCardContent>
                     </HoverCard>
                 </div>
@@ -80,7 +145,7 @@ const WeatherSubDetails = ({weatherData}) => {
                             </div>
                         </HoverCardTrigger>
                         <HoverCardContent align={"end"} className={'flex flex-col gap-3 font-semibold'}>
-                            Good visibility (5 - 10 km)
+                            {visiblitiyPopupInfo()}
                         </HoverCardContent>
                     </HoverCard>
                 </div>
