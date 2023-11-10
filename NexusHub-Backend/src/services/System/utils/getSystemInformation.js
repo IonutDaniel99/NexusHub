@@ -5,11 +5,11 @@ export const getSystemInformation = async () => {
     const startTime = new Date().getTime();
     let valueObject = {
         system: 'model, manufacturer',
-        cpu: "manufacturer, brand, speed, cores, physicalCores",
+        cpu: "manufacturer, brand, speed, cores, physicalCores, speedMin, speedMax, governor",
         mem: "total, free, used",
         currentLoad: 'currentLoad',
-        processes: "all, blocked",
-        wifiConnections: "*",
+        fsSize: "size, used, use, mount | *",
+        wifiConnections: "frequency, iface, model, security, signalLevel, ssid | *",
     }
 
     return si.get(valueObject).then(data => {
