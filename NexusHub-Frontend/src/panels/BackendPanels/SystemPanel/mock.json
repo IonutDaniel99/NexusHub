@@ -1,8 +1,4 @@
 {
-  "system": {
-    "model": "20TMS0AV00",
-    "manufacturer": "LENOVO"
-  },
   "cpu": {
     "manufacturer": "Intel",
     "brand": "Core™ i7-10850H",

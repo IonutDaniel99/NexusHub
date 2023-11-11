@@ -70,37 +70,31 @@ function CpuDetails({systemHealth}: { systemHealth: SystemInfo }) {
             </div>
             <div className={'flex flex-row flex-wrap gap-4 h-full'}>
                 <div className={'flex gap-2 text-xs items-center flex-wrap w-full'}>
-                    <p className={'flex flex-col bg-white w-14 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Cores</span>
                         <span
                             className={'font-bold'}>{cpu.physicalCores}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-14 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Threads</span>
                         <span
                             className={'font-bold'}>{cpu.cores}
                                 </span>
                     </p>
-                    <p className={'flex flex-col bg-white w-14 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Speed</span>
                         <span
                             className={'font-bold'}>{cpu.speed}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-14 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
+                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
                         <span className={'font-semibold'}>Min</span>
                         <span
                             className={'font-bold'}>{cpu.speedMin}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-14 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
+                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
                         <span className={'font-semibold'}>Max</span>
                         <span
                             className={'font-bold'}>{cpu.speedMax}</span>
-                    </p>
-                    <p className={'flex flex-col bg-white w-fit bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
-                        <span className={'font-semibold'}>Governor</span>
-                        <span
-                            className={'font-bold'}>{cpu.governor || "-"}
-                                </span>
                     </p>
                 </div>
                 <div className={'w-full h-36 bg-black bg-opacity-30 rounded-md'}>

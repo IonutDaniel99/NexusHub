@@ -4,10 +4,11 @@ import SystemJson from './mock.json'
 import CpuDetails from "@/panels/BackendPanels/SystemPanel/components/CpuDetails";
 import {io} from "socket.io-client";
 import {SystemUrl} from "@/configs/GlobalsServicesURL";
+import RamDetails from "@/panels/BackendPanels/SystemPanel/components/RamDetails";
 
 
 function SystemPanel() {
-    const [systemHealth, setSystemHealth] = useState<SystemInfo | null>(SystemJson);
+    const [systemHealth, setSystemHealth] = useState<SystemInfo>(SystemJson);
 
     // Socket IO TODO clear
     useEffect(() => {
@@ -26,17 +27,10 @@ function SystemPanel() {
     }, []);
     return (
         <div
-            className={'h-full w-full bg-[#202948] p-2'}>
+            className={'h-full w-full bg-[#202948] p-2 overflow-y-scroll'}>
             <div className={'w-full flex flex-wrap gap-4'}>
                 <CpuDetails systemHealth={systemHealth}/>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:
-                </div>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:</div>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:</div>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:</div>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:</div>
-                <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full  max-w-xl'}>System Health:</div>
-
+                <RamDetails systemHealth={systemHealth}/>
             </div>
         </div>
     );

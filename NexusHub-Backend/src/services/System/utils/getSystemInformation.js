@@ -2,10 +2,8 @@ import * as si from 'systeminformation'
 import {logger} from "../../../utils/winston_logger.js";
 
 export const getSystemInformation = async () => {
-    const startTime = new Date().getTime();
     let valueObject = {
-        system: 'model, manufacturer',
-        cpu: "manufacturer, brand, speed, cores, physicalCores, speedMin, speedMax, governor",
+        cpu: "manufacturer, brand, speed, cores, physicalCores, speedMin, speedMax",
         mem: "total, free, used",
         currentLoad: 'currentLoad',
         fsSize: "size, used, use, mount | *",
