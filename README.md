@@ -1,4 +1,30 @@
-# Nexus Hub
+<div id="top"></div>
+
+<!-- PROJECT LOGO -->
+<br />
+
+<h1 align="center">Nexus Hub</h1>
+  <p align="center">
+    <span>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="Logo"  height="28">
+        <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="Logo" width="109" height="28">
+        <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Logo" width="109" height="28">
+        <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Logo" width="82" height="28">
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Socket.io-010101?logo=socketdotio&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Radix%20UI-161618?logo=radixui&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Blueprint-137CBD?logo=blueprint&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+    </span>
+  </p>
+  </br>
+  
+</div>
+
 
 This project is a modular and dynamic web application designed to efficiently manage various microservices through a backend built in NodeJS. The architecture encompasses multiple microservices, including Onboarding (user authentication and registration), Weather (providing weather information), Console (In-Depth Details about all microservices messages on UI), Service Status (checking microservice health), and more planned for future implementation.
 
