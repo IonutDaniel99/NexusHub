@@ -19,6 +19,10 @@
         <img src="https://img.shields.io/badge/Blueprint-137CBD?logo=blueprint&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
         <img src="https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
         <img src="https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Less-1D365D?logo=less&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Google%20Maps-4285F4?logo=googlemaps&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
+        <img src="https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge" alt="Logo" height="28">
     </span>
   </p>
   </br>
@@ -107,7 +111,8 @@ The frontend is developed using React with Vite and TypeScript. It is a dynamic,
 
 <details>
 <summary><strong>Frontend Start</strong></summary>
-  To start web app, use the following command (CMD or PowerShell) in **"Frontend-Backend"** folder:
+  
+  To start web app, use the following command (CMD or PowerShell) in **"NexusHub-Frontend"** folder:
   ```
   npm run vite
   ```
@@ -116,16 +121,16 @@ The frontend is developed using React with Vite and TypeScript. It is a dynamic,
 <details>
 <summary><strong>How to add new microservice on Frontend</strong></summary>
 
-
-
 - After the microservice was implemented in backend, check it for any errors, otherwise continue
 - Change directory to "NexusHub-Frontend" folder
 - Go to src/config.tsx and add the following line
-```js
-export const <MicroserviceName>Url = "http://localhost:<MICROSERVICE_PORT>";
-```
-- Go to "src/panels/BackendPanels/<MICROSERVICE_NAME_FOLDER>/<REACT_Microservice_File>.tsx" **or** "src/panels/ClientPanels/<CLIENT_PANEL_FOLDER>/<REACT_PANEL_FILE>.tsx"
-- After file was created, create a react functional component. Example below:
+  ```js
+  export const <MicroserviceName>Url = "http://localhost:<MICROSERVICE_PORT>";
+  ```
+- Go to 
+  * **"src/panels/BackendPanels/<MICROSERVICE_NAME_FOLDER>/<REACT_Microservice_File>.tsx"**  -> Create a React Tsx file here if the panel will be connected to backend
+  * **"src/panels/ClientPanels/<CLIENT_PANEL_FOLDER>/<REACT_PANEL_FILE>.tsx"**  -> Create a React Tsx file here if the panel will have functionalities only on client-side
+- After file was created, create a react functional component. Example below: 
 ```js
 export function MicroserviceNamePanel() { //Example SettingsPanel
   return <div>ReactComponent or Custom Text</div>
@@ -143,7 +148,7 @@ export function MicroserviceNamePanel() { //Example SettingsPanel
         "MICROSERVICE_NAME": { "icon": <Console />, "selectable": true }, //Icon -> unique icon for ur microservice, Selectable -> if can be selected as a panel or not
     }
     ```
-* ### **THIS ARE IS STILL WORK IN PROGRESS**
+* ### **THIS AREA IS STILL WORK IN PROGRESS**
   * **Frontend**: Go to "src/configs/ClientServicesConfig.tsx" and add the following line 
     ```js
     export const CLIENT_SERVICES_CONFIG: Record<string, IPanelConfig> = {
