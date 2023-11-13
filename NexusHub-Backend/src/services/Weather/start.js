@@ -48,6 +48,7 @@ app.get('/getWeatherStatus', async (req, res) => {
     } else {
         logger.info('Requested new OpenWeatherMap!')
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${api}&units=metric&cnt=6`;
+        console.log(url)
         try {
             const response = await fetch(url);
             const body = await response.text();

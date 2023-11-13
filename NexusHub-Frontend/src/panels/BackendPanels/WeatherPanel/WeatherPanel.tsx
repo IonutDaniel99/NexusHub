@@ -5,26 +5,30 @@ import React from 'react'
 import {WeatherData} from "@/panels/BackendPanels/WeatherPanel/types";
 import moment from "moment";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
-import {Button} from "@/components/ui/button";
 import {weatherDescriptions} from "@/panels/BackendPanels/WeatherPanel/utils";
 import WeatherSubDetails from "@/panels/BackendPanels/WeatherPanel/components/WeatherSubDetails";
-import {displayWeatherAssetsById, timestampToReadable} from "@/panels/BackendPanels/WeatherPanel/functions";
+import {displayWeatherAssetsById} from "@/panels/BackendPanels/WeatherPanel/functions";
 import WeatherHoursForecast from "@/panels/BackendPanels/WeatherPanel/components/WeatherHoursForecast";
 import LoadingComponent from "@/components/LoadingComponent";
 import WeatherHealthAndSafety from "@/panels/BackendPanels/WeatherPanel/components/WeatherHealthAndSafety";
+import {IoMdRefresh} from "react-icons/io";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 function WeatherPanel() {
-    const latitude = useGlobalStore(state => state.latitude)
-    const longitude = useGlobalStore(state => state.longitude)
+    const [client_geolocation] = useLocalStorage('current_client_geolocation');
+    const {latitude, longitude} = JSON.parse(client_geolocation)
     const openweatherapi = useGlobalStore(state => state.openweathermap_api)
+
     const url = WeatherUrl + `/getWeatherStatus?latitude=${latitude}&longitude=${longitude}&api=${openweatherapi}`
+
     const [fetchResponse, fetchAgain] = useAxiosFetch(url) as [IFetchResponse, () => void];
     const {data: weatherData, isLoading} = fetchResponse as WeatherData;
 
-    if (isLoading) {
+    if (isLoading || (!latitude && !longitude)) {
         return <LoadingComponent/>
     }
-    if (weatherData.data.cod > 400) {
+
+    if (weatherData?.data?.cod > 400) {
         return <div className={'flex items-center justify-center h-full flex-col opacity-80 gap-4'}>
             <p className={'font-bold text-2xl'}>You broke it. Somehow...</p>
             <p className={'w-1/2 text-center line-clamp-2'}>
@@ -52,16 +56,20 @@ function WeatherPanel() {
                         <HoverCardContent align={"end"} className={'flex flex-col gap-3'}>
                             <span>Latitude: {latitude}</span>
                             <span>Latitude: {longitude}</span>
-                            <span>Last refresh: {timestampToReadable(weatherData.lastFetchedTime)}</span>
-                            <Button size={"sm"} onClick={fetchAgain}>Refresh Again</Button>
                         </HoverCardContent>
                     </HoverCard>
                 </div>
                 <div className="flex px-4 justify-between items-center w-full">
                     <div className="mb-2 w-full">
-                        <div className="h-6 text-sm leading-6 overflow-hidden whitespace-nowrap font-bold">
+                        <div
+                            className="flex gap-2 items-center h-6 text-sm leading-6 overflow-hidden whitespace-nowrap font-bold">
+                            <span>
                             Current weather in {weatherData.data.city.name}
+                            </span>
+                            <IoMdRefresh size={18} onClick={fetchAgain}
+                                         className={'opacity-60 hover:opacity-100 cursor-pointer'}/>
                         </div>
+
                         <div
                             className="h-4 text-xs leading-4 text-gray-50 font-semibold">{moment().format('LLL')}</div>
                     </div>

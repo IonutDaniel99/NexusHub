@@ -3,6 +3,8 @@ export interface SystemInfo {
         model: string;
         manufacturer: string;
     };
+    default_interface: NetworkInterface,
+    inetLatency: number,
     cpu: {
         manufacturer: string;
         brand: string;
@@ -21,12 +23,7 @@ export interface SystemInfo {
     currentLoad: {
         currentLoad: number;
     };
-    fsSize: Array<{
-        size: number;
-        used: number;
-        use: number;
-        mount: string;
-    }>;
+    fsSize: FileSystem;
     wifiConnections: Array<{
         frequency: number;
         iface: string;
@@ -35,4 +32,38 @@ export interface SystemInfo {
         signalLevel: string;
         ssid: string;
     }>;
+}
+
+export interface NetworkInterface {
+    iface: string;
+    ifaceName: string;
+    default: boolean;
+    ip4: string;
+    ip4subnet: string;
+    ip6: string;
+    ip6subnet: string;
+    mac: string;
+    virtual: boolean;
+    operstate: string;
+    type: string;
+    duplex: string;
+    mtu: string;
+    speed: number;
+    dhcp: boolean;
+    dnsSuffix: string;
+    ieee8021xAuth: string;
+    ieee8021xState: string;
+    carrierChanges: number;
+}
+
+
+export interface FileSystemSize {
+    size: number;
+    used: number;
+    use: number;
+    mount: string;
+}
+
+export interface FileSystem {
+    fsSize: FileSystemSize[];
 }

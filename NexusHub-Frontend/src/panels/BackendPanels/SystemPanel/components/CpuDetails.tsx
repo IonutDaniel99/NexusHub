@@ -45,6 +45,8 @@ function CpuDetails({systemHealth}: { systemHealth: SystemInfo }) {
     const cpu = systemHealth.cpu;
     const cpuLoad: number = Number(systemHealth?.currentLoad?.currentLoad?.toFixed());
 
+    if (!cpu || !cpuLoad) return;
+
     const [staticLoad, setStaticLoad] = useState(Array.from({length: 7}).fill(0));
     const [rechartsData, setRechartsData] = useState<CpuLoadData[]>(initialData)
     useEffect(() => {
@@ -63,41 +65,42 @@ function CpuDetails({systemHealth}: { systemHealth: SystemInfo }) {
     }, [systemHealth]);
 
     return (
-        <div className={'bg-[#2C365E] rounded-md p-4 flex flex-col gap-2 w-full max-w-xl'}>
-            <div className={'flex items-center gap-2 bg-white w-fit bg-opacity-10 py-2 px-4 rounded-md'}>
+        <div
+            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full max-w-xl text-secondary-foreground'}>
+            <div className={'flex items-center gap-2 w-fit bg-opacity-20 py-2 px-4 rounded-md bg-secondary'}>
                 <BsCpu size={22}/>
                 <p className={'font-bold'}>CPU ({cpu.manufacturer} {cpu.brand})</p>
             </div>
             <div className={'flex flex-row flex-wrap gap-4 h-full'}>
                 <div className={'flex gap-2 text-xs items-center flex-wrap w-full'}>
-                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-secondary w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Cores</span>
                         <span
                             className={'font-bold'}>{cpu.physicalCores}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-secondary w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Threads</span>
                         <span
                             className={'font-bold'}>{cpu.cores}
                                 </span>
                     </p>
-                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
+                    <p className={'flex flex-col bg-secondary w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1'}>
                         <span className={'font-semibold'}>Speed</span>
                         <span
                             className={'font-bold'}>{cpu.speed}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
+                    <p className={'flex flex-col bg-secondary w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
                         <span className={'font-semibold'}>Min</span>
                         <span
                             className={'font-bold'}>{cpu.speedMin}</span>
                     </p>
-                    <p className={'flex flex-col bg-white w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
+                    <p className={'flex flex-col bg-secondary w-20 bg-opacity-5 px-2 py-1 rounded-md items-center gap-1 text-xs'}>
                         <span className={'font-semibold'}>Max</span>
                         <span
                             className={'font-bold'}>{cpu.speedMax}</span>
                     </p>
                 </div>
-                <div className={'w-full h-36 bg-black bg-opacity-30 rounded-md'}>
+                <div className={'w-full h-36 bg-secondary rounded-md'}>
                     <ResponsiveContainer>
                         <AreaChart
                             data={rechartsData}
@@ -109,9 +112,9 @@ function CpuDetails({systemHealth}: { systemHealth: SystemInfo }) {
                             }}
                         >
                             <CartesianGrid strokeDasharray="0.35"/>
-                            <XAxis dataKey="name" tick={{fill: '#f2f2f26c'}}/>
+                            <XAxis dataKey="name" className="text-secondary-foreground"/>
                             <YAxis type={'number'} includeHidden={true} domain={[0, 100]}
-                                   tick={{fill: '#f2f2f26c'}}/>
+                                   className="text-secondary-foreground"/>
                             <Tooltip contentStyle={{color: "black", borderRadius: '8px'}}/>
                             <Area type="monotone" dataKey="CpuLoad" stroke="#fdb462" fill="#fdb462" strokeWidth={2}
                                   unit={" %"} animationDuration={750}

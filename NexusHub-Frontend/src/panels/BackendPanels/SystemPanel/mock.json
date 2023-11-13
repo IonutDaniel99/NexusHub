@@ -14,25 +14,14 @@
     "free": 1977208832,
     "used": 14908362752
   },
+  "inetLatency": 0,
   "currentLoad": {
     "currentLoad": 3.4600062142730397
   },
+  "default_interface": {
+  },
   "fsSize": [
-    {
-      "size": 509979127808,
-      "used": 308135919616,
-      "use": 60.42,
-      "mount": "C:"
-    }
   ],
   "wifiConnections": [
-    {
-      "frequency": 5200,
-      "iface": "Wi-Fi",
-      "model": "Intel(R) Wi-Fi 6 AX201 160MHz",
-      "security": "WPA2-Personal",
-      "signalLevel": "80%",
-      "ssid": "TP-Link_9994_5G"
-    }
   ]
 }
