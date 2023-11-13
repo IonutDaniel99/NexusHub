@@ -4,11 +4,12 @@ import cors from 'cors';
 
 // Configs Imports
 import {logger} from '../../utils/winston_logger.js';
+import {GLOBAL_WEATHER_MICROSERVICE_PORT} from "../../urlConfigs.js";
 
 const app = express();
 const server = createServer(app);
 
-const WEATHER_MICROSERVICE_PORT = 5002;
+const WEATHER_MICROSERVICE_PORT = GLOBAL_WEATHER_MICROSERVICE_PORT;
 const SERVICE_NAME = 'WEATHER';
 
 app.use(cors());

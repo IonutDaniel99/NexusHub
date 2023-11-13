@@ -3,9 +3,10 @@ import express from 'express';
 import cors from 'cors';
 import {PrismaClient} from '@prisma/client';
 import {logger} from '../../utils/winston_logger.js';
+import {GLOBAL_ONBOARDING_MICROSERVICE_PORT} from "../../urlConfigs.js";
 
 
-const ONBOARDING_MICROSERVICE_PORT = 5000;
+const ONBOARDING_MICROSERVICE_PORT = GLOBAL_ONBOARDING_MICROSERVICE_PORT;
 const SERVICE_NAME = 'ONBOARDING';
 const app = express();
 const prisma = new PrismaClient();

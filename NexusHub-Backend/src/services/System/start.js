@@ -6,6 +6,7 @@ import cors from 'cors';
 // Configs Imports
 import {logger} from '../../utils/winston_logger.js';
 import {getSystemInformation} from "./utils/getSystemInformation.js";
+import {GLOBAL_SYSTEM_MICROSERVICE_PORT} from "../../urlConfigs.js";
 
 const app = express();
 const server = createServer(app);
@@ -15,7 +16,7 @@ const io = new Server(server, {
         origin: '*',
     },
 });
-const SYSTEM_MICROSERVICE_PORT = 5003;
+const SYSTEM_MICROSERVICE_PORT = GLOBAL_SYSTEM_MICROSERVICE_PORT;
 const SERVICE_NAME = 'SYSTEM';
 
 

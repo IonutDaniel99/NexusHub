@@ -2,12 +2,13 @@ import express from 'express';
 import {createServer} from 'http';
 import {logger} from '../../utils/winston_logger.js';
 import cors from "cors";
+import {GLOBAL_CONSOLE_MICROSERVICE_PORT} from "../../urlConfigs.js";
 
 const app = express();
 const server = createServer(app);
 
 const SERVICE_NAME = 'CONSOLE';
-const CONSOLE_MICROSERVICE_PORT = 5001;
+const CONSOLE_MICROSERVICE_PORT = GLOBAL_CONSOLE_MICROSERVICE_PORT;
 
 app.use(cors());
 

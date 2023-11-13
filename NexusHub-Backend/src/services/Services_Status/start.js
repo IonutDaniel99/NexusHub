@@ -5,11 +5,12 @@ import request from "request"
 
 import {logger} from '../../utils/winston_logger.js';
 import {microservices_url} from '../../utils/microservices_url.js';
+import {GLOBAL_SERVICE_STATUS_PORT} from "../../urlConfigs.js";
 
 const app = express();
 const server = createServer(app);
 
-const PORT = 9998;
+const PORT = GLOBAL_SERVICE_STATUS_PORT;
 const SERVICE_NAME = 'GLOBAL';
 
 
