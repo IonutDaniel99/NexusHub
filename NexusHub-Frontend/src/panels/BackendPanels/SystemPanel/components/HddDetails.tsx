@@ -22,7 +22,7 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
         return (
             <div
                 key={index}
-                className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full max-w-xl text-secondary-foreground'}>
+                className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full text-secondary-foreground'}>
                 <div className={'flex items-center gap-2 w-fit bg-opacity-20 py-2 px-4 rounded-md bg-secondary'}>
                     <MdStorage size={22}/>
                     <p className={'font-bold'}>Hard Disk ( Drive: {hardDrive.mount}/ )</p>

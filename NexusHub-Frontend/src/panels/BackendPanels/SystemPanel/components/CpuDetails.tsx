@@ -66,7 +66,7 @@ function CpuDetails({systemHealth}: { systemHealth: SystemInfo }) {
 
     return (
         <div
-            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full max-w-xl text-secondary-foreground'}>
+            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full  text-secondary-foreground'}>
             <div className={'flex items-center gap-2 w-fit bg-opacity-20 py-2 px-4 rounded-md bg-secondary'}>
                 <BsCpu size={22}/>
                 <p className={'font-bold'}>CPU ({cpu.manufacturer} {cpu.brand})</p>

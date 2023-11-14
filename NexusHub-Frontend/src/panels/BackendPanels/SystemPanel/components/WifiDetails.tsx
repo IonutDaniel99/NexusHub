@@ -4,37 +4,37 @@ import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAx
 import {MdNetworkCheck} from "react-icons/md";
 
 interface WifiSignalData {
-    SignalLoad: number;
+    SignalPower: number;
     name: string;
 }
 
 const initialData: WifiSignalData[] = [
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "60s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "50s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "40s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "30s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "20s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "10s"
     },
     {
-        "SignalLoad": 0,
+        "SignalPower": 0,
         "name": "Now"
     }
 ]
@@ -57,7 +57,7 @@ function WifiDetails({systemHealth}: { systemHealth: SystemInfo }) {
         });
 
         const resultArray: any = staticLoad.map((value, index) => ({
-            SignalLoad: value,
+            SignalPower: value,
             name: staticSeconds[index]
         }));
         setRechartsData(resultArray)
@@ -65,7 +65,7 @@ function WifiDetails({systemHealth}: { systemHealth: SystemInfo }) {
 
     return (
         <div
-            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full max-w-xl text-secondary-foreground'}>
+            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full text-secondary-foreground'}>
             <div className={'flex items-center gap-2 w-fit bg-opacity-20 py-2 px-4 rounded-md bg-secondary'}>
                 <MdNetworkCheck size={22}/>
                 <p className={'font-bold'}>{wifi.model}</p>
@@ -110,7 +110,7 @@ function WifiDetails({systemHealth}: { systemHealth: SystemInfo }) {
                             <YAxis type={'number'} includeHidden={true}
                                    className="text-secondary-foreground"/>
                             <Tooltip contentStyle={{color: "black", borderRadius: '8px'}}/>
-                            <Area type="monotone" dataKey="SignalLoad" stroke="#fdb462" fill="#fdb462" strokeWidth={2}
+                            <Area type="monotone" dataKey="SignalPower" stroke="#fdb462" fill="#fdb462" strokeWidth={2}
                                   unit={" %"} animationDuration={750}
                                   activeDot={{r: 4}}/>
                         </AreaChart>

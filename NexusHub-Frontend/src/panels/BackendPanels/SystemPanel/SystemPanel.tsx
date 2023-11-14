@@ -8,27 +8,44 @@ import RamDetails from "@/panels/BackendPanels/SystemPanel/components/RamDetails
 import HddDetails from "@/panels/BackendPanels/SystemPanel/components/HddDetails";
 import DefaultInterface from "@/panels/BackendPanels/SystemPanel/components/DefaultInterface";
 import WifiDetails from "@/panels/BackendPanels/SystemPanel/components/WifiDetails";
+import LoadingComponent from "@/components/LoadingComponent";
+import BatteryDetails from "@/panels/BackendPanels/SystemPanel/components/BatteryDetails";
+import OsDetails from "@/panels/BackendPanels/SystemPanel/components/OsDetails";
+import GraphicsDetails from "@/panels/BackendPanels/SystemPanel/components/GraphicsDetails";
 
 
 function SystemPanel() {
     // @ts-ignore
     const [systemHealth, setSystemHealth] = useState<SystemInfo>(SystemJson);
     const [isSocketDown, setIsSocketDown] = useState(false)
+    const [isSocketLoading, setIsSocketLoading] = useState(true)
+
     useEffect(() => {
         const system_socket = io(SystemUrl);
 
         system_socket.on('systemHealthUpdate', (data) => {
-            setIsSocketDown(false)
-            console.log(data)
+            setIsSocketLoading(false)
             setSystemHealth(data);
+            console.log(data)
+        });
+
+        system_socket.on('connect', function () {
+            setIsSocketDown(false)
+        });
+
+        system_socket.on('disconnect', function () {
+            setIsSocketDown(true)
         });
 
         return () => {
-            setIsSocketDown(true)
             system_socket.disconnect();
             console.log("socket.disconnected()")
         };
     }, []);
+
+    if (isSocketLoading) {
+        return <LoadingComponent/>
+    }
 
     if (isSocketDown) {
         return <div className={'flex items-center justify-center h-full flex-col opacity-80 gap-4'}>
@@ -41,13 +58,17 @@ function SystemPanel() {
 
     return (
         <div
-            className={'h-full w-full bg-background p-2 overflow-y-scroll'}>
+            className={'h-full w-full bg-background p-2 overflow-y-scroll overflow-x-hidden'}>
             <div className={'w-full flex flex-wrap gap-4'}>
                 <CpuDetails systemHealth={systemHealth}/>
                 <RamDetails systemHealth={systemHealth}/>
                 <HddDetails systemHealth={systemHealth}/>
                 <DefaultInterface systemHealth={systemHealth}/>
                 <WifiDetails systemHealth={systemHealth}/>
+                <BatteryDetails systemHealth={systemHealth}/>
+                <GraphicsDetails systemHealth={systemHealth}/>
+                <OsDetails systemHealth={systemHealth}/>
+
             </div>
         </div>
     );

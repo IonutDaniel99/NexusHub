@@ -1,10 +1,4 @@
 export interface SystemInfo {
-    system: {
-        model: string;
-        manufacturer: string;
-    };
-    default_interface: NetworkInterface,
-    inetLatency: number,
     cpu: {
         manufacturer: string;
         brand: string;
@@ -13,7 +7,6 @@ export interface SystemInfo {
         physicalCores: number;
         speedMin: number;
         speedMax: number;
-        governor: string;
     };
     mem: {
         total: number;
@@ -23,7 +16,8 @@ export interface SystemInfo {
     currentLoad: {
         currentLoad: number;
     };
-    fsSize: FileSystem;
+
+    fsSize: FileSystemSize[];
     wifiConnections: Array<{
         frequency: number;
         iface: string;
@@ -32,6 +26,73 @@ export interface SystemInfo {
         signalLevel: string;
         ssid: string;
     }>;
+    inetLatency: number;
+    osInfo: {
+        platform: string;
+        distro: string;
+        release: string;
+        arch: string;
+    };
+    versions: {
+        kernel: string;
+        openssl: string;
+        systemOpenssl: string;
+        systemOpensslLib: string;
+        node: string;
+        v8: string;
+        npm: string;
+        yarn: string;
+        pm2: string;
+        gulp: string;
+        grunt: string;
+        git: string;
+        tsc: string;
+        mysql: string;
+        redis: string;
+        mongodb: string;
+        apache: string;
+        nginx: string;
+        php: string;
+        docker: string;
+        postfix: string;
+        postgresql: string;
+        perl: string;
+        python: string;
+        python3: string;
+        pip: string;
+        pip3: string;
+        java: string;
+        gcc: string;
+        virtualbox: string;
+        bash: string;
+        zsh: string;
+        fish: string;
+        powershell: string;
+        dotnet: string;
+    };
+    graphics: {
+        controllers: GraphicsController[];
+        displays: Display[];
+    };
+    battery: {
+        cycleCount: number;
+        isCharging: boolean;
+        designedCapacity: number;
+        currentCapacity: number;
+        voltage: number;
+        percent: number;
+        timeRemaining: number | null;
+        acConnected: boolean;
+        manufacturer: string;
+    };
+    default_interface: NetworkInterface;
+}
+
+export interface FileSystemSize {
+    size: number;
+    used: number;
+    use: number;
+    mount: string;
 }
 
 export interface NetworkInterface {
@@ -56,14 +117,38 @@ export interface NetworkInterface {
     carrierChanges: number;
 }
 
-
-export interface FileSystemSize {
-    size: number;
-    used: number;
-    use: number;
-    mount: string;
+export interface GraphicsController {
+    vendor: string;
+    model: string;
+    bus: string;
+    vram: number;
+    vramDynamic: boolean;
+    subDeviceId?: string;
+    driverVersion?: string;
+    name?: string;
+    pciBus?: string;
+    memoryTotal?: number;
+    memoryFree?: number;
+    temperatureGpu?: number;
+    clockCore?: number;
+    clockMemory?: number;
 }
 
-export interface FileSystem {
-    fsSize: FileSystemSize[];
+export interface Display {
+    vendor: string;
+    model: string;
+    deviceName: string;
+    main: boolean;
+    builtin: boolean;
+    connection: string;
+    resolutionX: number;
+    resolutionY: number;
+    sizeX: number;
+    sizeY: number;
+    pixelDepth: string;
+    currentResX: number;
+    currentResY: number;
+    positionX: number;
+    positionY: number;
+    currentRefreshRate: number;
 }

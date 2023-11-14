@@ -3,38 +3,38 @@ import {SystemInfo} from "@/panels/BackendPanels/SystemPanel/types";
 import {FaNetworkWired} from "react-icons/fa";
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 
-interface LatencyLoadDate {
-    LatencyLoad: number;
+interface LatencyDate {
+    Latency: number;
     name: string;
 }
 
-const initialData: LatencyLoadDate[] = [
+const initialData: LatencyDate[] = [
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "60s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "50s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "40s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "30s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "20s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "10s"
     },
     {
-        "LatencyLoad": 0,
+        "Latency": 0,
         "name": "Now"
     }
 ]
@@ -46,7 +46,7 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
     const latency = systemHealth.inetLatency;
     if (!iface || !latency) return;
     const [staticLoad, setStaticLoad] = useState(Array.from({length: 7}).fill(0));
-    const [rechartsData, setRechartsData] = useState<LatencyLoadDate[]>(initialData)
+    const [rechartsData, setRechartsData] = useState<LatencyDate[]>(initialData)
     useEffect(() => {
         setStaticLoad(prevLoad => {
             const newLoad = [...prevLoad];
@@ -56,7 +56,7 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
         });
 
         const resultArray: any = staticLoad.map((value, index) => ({
-            LatencyLoad: value,
+            Latency: value,
             name: staticSeconds[index]
         }));
         setRechartsData(resultArray)
@@ -64,7 +64,7 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
 
     return (
         <div
-            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full max-w-xl text-secondary-foreground'}>
+            className={'bg-background border rounded-md p-4 flex flex-col gap-2 w-full text-secondary-foreground'}>
             <div className={'flex items-center gap-2 w-fit bg-opacity-20 py-2 px-4 rounded-md bg-secondary'}>
                 <FaNetworkWired size={22}/>
                 <p className={'font-bold'}>{iface.ifaceName} ({iface.iface}) {iface.operstate == 'up' ? "Up" : "Down"}</p>
@@ -114,8 +114,8 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
                             <YAxis type={'number'} includeHidden={true}
                                    className="text-secondary-foreground"/>
                             <Tooltip contentStyle={{color: "black", borderRadius: '8px'}}/>
-                            <Area type="monotone" dataKey="LatencyLoad" stroke="#fdb462" fill="#fdb462" strokeWidth={2}
-                                  unit={" Gb"} animationDuration={750}
+                            <Area type="monotone" dataKey="Latency" stroke="#fdb462" fill="#fdb462" strokeWidth={2}
+                                  unit={" ms"} animationDuration={750}
                                   activeDot={{r: 4}}/>
                         </AreaChart>
                     </ResponsiveContainer>

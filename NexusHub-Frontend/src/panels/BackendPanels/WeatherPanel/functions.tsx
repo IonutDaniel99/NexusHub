@@ -24,18 +24,23 @@ export const displayWeatherAssetsById = (id: number, unix_time: number, isBackgr
     switch (true) {
         case (id >= 200 && id < 250): // Thunder
             current_weather = 200
+            weatherBackgroundString = '200'
             break;
         case (id >= 300 && id < 350): // Drizzle
             current_weather = 300
+            weatherBackgroundString = '300'
             break;
         case (id >= 500 && id < 550): // Rain
             current_weather = 500
+            weatherBackgroundString = '500'
             break;
         case (id >= 600 && id < 650): // Snow
             current_weather = 600
+            weatherBackgroundString = '600'
             break;
         case (id >= 700 && id < 750): // Fog
             current_weather = 700
+            weatherBackgroundString = '700'
             break;
         case (id === 800): // Clear
             if (isDay) {

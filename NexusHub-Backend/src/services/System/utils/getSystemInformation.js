@@ -14,7 +14,11 @@ export const getSystemInformation = async () => {
         currentLoad: 'currentLoad',
         fsSize: "size, used, use, mount | *",
         wifiConnections: "frequency, iface, model, security, signalLevel, ssid | *",
-        inetLatency: "*"
+        inetLatency: "*",
+        osInfo: "distro, arch | *",
+        versions: "*",
+        battery: "cycleCount, isCharging, designedCapacity, currentCapacity, voltage, percent, timeRemaining, acConnected, manufacturer",
+        graphics: "*"
     }
 
     return si.get(valueObject).then(data => {
