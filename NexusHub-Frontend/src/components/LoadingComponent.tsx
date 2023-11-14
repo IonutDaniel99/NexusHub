@@ -15,7 +15,7 @@ const LoadingComponent = () => {
                     fill="currentFill"/>
             </svg>
         </div>
-        <span className="text-xl font-semibold">Loading...</span>
+        <span className="text-xl font-semibold text-secondary-foreground">Loading...</span>
     </div>;
 }
 

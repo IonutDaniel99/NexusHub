@@ -1,0 +1,27 @@
+{
+  "cpu": {
+    "manufacturer": "Intel",
+    "brand": "Core™ i7-10850H",
+    "speed": 2.7,
+    "cores": 12,
+    "physicalCores": 6,
+    "speedMin": 2.7,
+    "speedMax": 2.71,
+    "governor": ""
+  },
+  "mem": {
+    "total": 16885571584,
+    "free": 1977208832,
+    "used": 14908362752
+  },
+  "inetLatency": 0,
+  "currentLoad": {
+    "currentLoad": 3.4600062142730397
+  },
+  "default_interface": {
+  },
+  "fsSize": [
+  ],
+  "wifiConnections": [
+  ]
+}

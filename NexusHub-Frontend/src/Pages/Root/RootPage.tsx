@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {delay} from "lodash";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import {OnboardingUrl} from "../../config";
+import {OnboardingUrl} from "../../configs/GlobalsServicesURL";
 import useRootStore from "@/stores/RootStore";
 import {Button} from "@/components/ui/button";
 
