@@ -1,8 +1,8 @@
 import React from "react";
 
-const LoadingComponent = () => {
+const LoadingComponent = ({children}: { children?: JSX.Element }) => {
     return <div
-        className='flex flex-col items-center justify-center w-full h-full gap-2 p-6 bg-white shadow-md dark:bg-background dark:border-gray-800 '>
+        className='flex flex-col items-center justify-center w-full h-full gap-2 p-6 bg-white dark:bg-background dark:border-gray-800 '>
         <div role="status" className="relative flex flex-col gap-4">
             <svg aria-hidden="true"
                  className="w-12 h-12 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
@@ -16,6 +16,7 @@ const LoadingComponent = () => {
             </svg>
         </div>
         <span className="text-xl font-semibold text-secondary-foreground">Loading...</span>
+        {children}
     </div>;
 }
 

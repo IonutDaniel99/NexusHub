@@ -53,7 +53,7 @@ function DashboardMain() {
                 <span className="!w-40 !h-40 !text-9xl bp5-icon-applications bp5-icon-large"></span>
             </div>
             <h4 className="bp5-heading">You did it.</h4>
-            <h4 className="bp5-heading">No Windows Present</h4>
+            <h4 className="bp5-heading">No Panels Present</h4>
             <button
                 onClick={resetPanelsWhenZero}
                 className='flex items-center justify-center px-4 py-1 text-base font-bold rounded bg-muted hover:cursor-pointer'>Press

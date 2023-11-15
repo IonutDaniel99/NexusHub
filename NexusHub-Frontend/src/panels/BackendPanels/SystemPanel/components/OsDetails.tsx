@@ -14,7 +14,8 @@ function RamDetails({systemHealth}: { systemHealth: SystemInfo }) {
                 <MdStorage size={22}/>
                 <p className={'font-bold'}>{osInfo.distro} {osInfo.arch}</p>
             </div>
-            <div className={'flex flex-row flex-wrap gap-2 h-full text-xs w-full  items-center '}>
+            <div
+                className={'flex flex-row flex-wrap gap-2 h-full text-xs w-full items-center'}>
                 {Object.entries(appVersions)
                     .sort(([nameA, versionA], [nameB, versionB]) =>
                         versionA && !versionB ? -1 : !versionA && versionB ? 1 : 0

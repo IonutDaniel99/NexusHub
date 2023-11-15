@@ -44,7 +44,12 @@ function SystemPanel() {
     }, []);
 
     if (isSocketLoading) {
-        return <LoadingComponent/>
+        return <LoadingComponent
+            children={
+                <div className="text-sm font-semibold text-secondary-foreground animate-pulse">
+                    First loading should take around 10 seconds...
+                </div>
+            }/>
     }
 
     if (isSocketDown) {
@@ -68,7 +73,6 @@ function SystemPanel() {
                 <BatteryDetails systemHealth={systemHealth}/>
                 <GraphicsDetails systemHealth={systemHealth}/>
                 <OsDetails systemHealth={systemHealth}/>
-
             </div>
         </div>
     );

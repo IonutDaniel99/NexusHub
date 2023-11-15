@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {ContextMenuContent, ContextMenuItem} from './ui/context-menu'
 import useServiceStatusStore from '@/stores/ServiceStatusStore';
 import {IServiceData} from '@/Pages/Dashboard/types';
@@ -23,6 +23,12 @@ function DashboardPanelsContextMenu({
                                         fetchAgainServiceStatus
                                     }: IDashboardPanelsContextMenu) {
     const setServices = useServiceStatusStore((state: any) => state.setServices);
+
+    useEffect(() => {
+        const interval = setInterval(() => fetchAgainServiceStatus(), 60000);
+        return () => clearInterval(interval);
+    }, []);
+
 
     const renderServicesElement = (id: any) => {
         const {data: services, error, isLoading} = fetchServiceStatus;
@@ -73,11 +79,9 @@ function DashboardPanelsContextMenu({
     const renderClientElement = (id: any) => {
         return CLIENT_PANELS_OBJECT
             .slice()
-            .sort((a: { service_name: string; }, b: {
-                service_name: any;
-            }) => a.service_name.localeCompare(b.service_name))
-            .map((service: { service_name: string }, index: React.Key) => {
-                const service_name = service.service_name
+            .sort((a: string, b: string) => a.localeCompare(b))
+            .map((service, index: React.Key) => {
+                const service_name = service
                 return <ContextMenuItem
                     key={index}
                     onSelect={() => handlePanel(id, service_name)}
